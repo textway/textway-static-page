@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>보도자료 – Textway</title>
+  <meta name="description" content="Textway의 주요 언론 보도 및 미디어 자료입니다.">
+  <link rel="icon" type="image/png" href="public/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+
+    :root {
+      --blue: #1B6FE0; --blue-deep: #1452B8; --blue-light: #EBF2FF;
+      --navy: #0F1829; --navy-mid: #1A2740;
+      --ink: #111827; --grey-700: #374151; --grey-400: #9CA3AF;
+      --grey-200: #E5E7EB; --grey-100: #F3F5F8;
+      --gnb-h: 64px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 500; color: var(--ink); line-height: 1.7;
+      -webkit-font-smoothing: antialiased; overflow-x: hidden;
+      background: var(--grey-100);
+    }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 48px; }
+    .eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--blue); margin-bottom: 14px; display: block;
+    }
+    .reveal {
+      opacity: 0; transform: translateY(14px);
+      transition: opacity 0.55s cubic-bezier(0.22,1,0.36,1), transform 0.55s cubic-bezier(0.22,1,0.36,1);
+      will-change: opacity, transform;
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── GNB ── */
+    #gnb {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--gnb-h); display: flex; align-items: center;
+      background: rgba(255,255,255,0.88);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0,0,0,0.08);
+    }
+    .gnb-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 48px;
+    }
+    .gnb-logo img { height: 30px; width: auto; display: block; }
+    .gnb-nav { display: flex; align-items: center; gap: 4px; }
+    .gnb-item { position: relative; }
+    .gnb-link {
+      display: flex; align-items: center; gap: 4px;
+      padding: 8px 14px; font-size: 15px; font-weight: 500; line-height: 1.5;
+      height: 38px;
+      color: var(--ink); text-decoration: none; border-radius: 8px;
+      border: none; background: none; cursor: pointer;
+      transition: color 0.15s, background 0.15s; white-space: nowrap;
+    }
+    .gnb-link:hover { color: var(--blue); background: var(--blue-light); }
+    .gnb-link.active { color: var(--blue); font-weight: 700; background: var(--blue-light); }
+    .gnb-link svg { transition: transform 0.2s; }
+    .gnb-item:hover .gnb-link svg { transform: rotate(180deg); }
+    .gnb-drop {
+      position: absolute; top: calc(100% + 8px); left: 0;
+      background: white; border: 1px solid var(--grey-200);
+      border-radius: 14px; box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      padding: 8px; min-width: 210px;
+      opacity: 0; visibility: hidden; transform: translateY(-6px);
+      transition: all 0.18s ease; z-index: 200;
+    }
+    .gnb-item:hover .gnb-drop { opacity: 1; visibility: visible; transform: none; }
+    .gnb-drop-item {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 14px; font-size: 14px; color: var(--grey-700);
+      text-decoration: none; border-radius: 8px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .gnb-drop-item:hover { background: var(--grey-100); color: var(--ink); }
+    .pill-amber { font-size: 10px; font-weight: 600; padding: 2px 8px; background: #FEF3C7; color: #92400E; border-radius: 999px; }
+    .gnb-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 10px 20px; background: var(--blue); color: white;
+      font-size: 14px; font-weight: 600; border-radius: 8px;
+      text-decoration: none; white-space: nowrap;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .gnb-cta:hover { background: var(--blue-deep); transform: translateY(-1px); }
+    .gnb-burger {
+      display: none; flex-direction: column; gap: 5px;
+      padding: 8px; background: none; border: none; cursor: pointer;
+    }
+    .gnb-burger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; }
+    #mobileMenu {
+      display: none; position: fixed; inset: 0;
+      background: white; z-index: 99; flex-direction: column;
+      padding: 88px 28px 32px;
+    }
+    #mobileMenu.open { display: flex; }
+    .mob-close {
+      position: absolute; top: 16px; right: 16px;
+      background: none; border: none; font-size: 22px; cursor: pointer; color: var(--ink); padding: 10px;
+    }
+    .mob-link {
+      display: block; padding: 18px 0; font-size: 20px; font-weight: 600;
+      color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--grey-100);
+    }
+    .mob-link.active { color: var(--blue); }
+    .mob-sub { display: block; padding: 12px 0 12px 16px; font-size: 15px; color: var(--grey-700); text-decoration: none; }
+
+    /* ── PAGE HEADER ── */
+    #page-header {
+      background: white;
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--grey-200);
+    }
+    .page-header-inner {
+      display: flex; align-items: center; justify-content: space-between; gap: 32px;
+    }
+    .page-header-h1 { font-size: 48px; font-weight: 700; color: var(--ink); margin-top: 8px; }
+    .page-header-sub { font-size: 16px; color: var(--grey-700); margin-top: 10px; }
+    .press-count {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; color: var(--grey-400); white-space: nowrap;
+      padding-bottom: 8px;
+    }
+
+    /* ── PRESS LIST ── */
+    #press-list { padding: 56px 0 100px; }
+    .press-articles { display: flex; flex-direction: column; gap: 2px; }
+
+    .press-article {
+      background: white;
+      border-radius: 0;
+      padding: 32px 40px;
+      display: grid;
+      grid-template-columns: 160px 1fr auto;
+      gap: 0 40px;
+      align-items: center;
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s;
+      position: relative;
+    }
+    .press-article:first-child { border-radius: 16px 16px 0 0; }
+    .press-article:last-child { border-radius: 0 0 16px 16px; }
+    .press-article:only-child { border-radius: 16px; }
+    .press-article:hover { background: #FAFBFF; }
+    .press-article::after {
+      content: '';
+      position: absolute; bottom: 0; left: 40px; right: 40px;
+      height: 1px; background: var(--grey-100);
+    }
+    .press-article:last-child::after { display: none; }
+
+    .press-article-meta { display: flex; flex-direction: column; gap: 6px; }
+    .press-article-outlet {
+      font-size: 13px; font-weight: 700; color: var(--ink);
+    }
+    .press-article-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px; color: var(--grey-400); letter-spacing: 0.04em;
+    }
+    .press-article-badge {
+      display: inline-block; font-size: 10px; font-weight: 600;
+      padding: 2px 9px; border-radius: 999px;
+      background: var(--blue-light); color: var(--blue);
+      width: fit-content; margin-top: 2px;
+    }
+
+    .press-article-headline {
+      font-size: 17px; font-weight: 600; color: var(--ink);
+      line-height: 1.55; text-wrap: pretty;
+    }
+    .press-article:hover .press-article-headline { color: var(--blue); }
+
+    .press-article-arrow {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--grey-100); display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: background 0.15s, transform 0.2s;
+    }
+    .press-article:hover .press-article-arrow {
+      background: var(--blue-light); transform: translate(2px, -2px);
+    }
+    .press-article:hover .press-article-arrow svg { stroke: var(--blue); }
+
+    /* ── FOOTER ── */
+    footer { background: var(--navy); padding: 64px 0 0; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1.2fr; gap: 48px; margin-bottom: 52px; }
+    .footer-logo img { height: 26px; filter: brightness(0) invert(1); margin-bottom: 12px; display: block; }
+    .footer-slogan { font-size: 14px; color: rgba(255,255,255,0.45); }
+    .footer-col-title { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 18px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 14px; color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
+    .footer-links a:hover { color: white; }
+    .footer-contact { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.75; }
+    .footer-contact a { color: rgba(255,255,255,0.6); text-decoration: none; }
+    .footer-contact a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08); padding: 22px 0;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color 0.15s; }
+    .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+    .footer-copy { font-size: 13px; color: rgba(255,255,255,0.35); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1279px) {
+      .container, .gnb-inner { padding: 0 28px; }
+      .press-article { padding: 28px 32px; grid-template-columns: 140px 1fr auto; gap: 0 28px; }
+      .press-article::after { left: 32px; right: 32px; }
+    }
+    @media (max-width: 767px) {
+      .container, .gnb-inner { padding: 0 20px; }
+      .gnb-nav, .gnb-cta { display: none; }
+      .gnb-burger { display: flex; }
+      #page-header { padding: 56px 0 40px; }
+      .page-header-h1 { font-size: 34px; }
+      .page-header-inner { flex-direction: column; align-items: flex-start; gap: 8px; }
+      #press-list { padding: 32px 0 64px; }
+      .press-article {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+        padding: 24px 20px; gap: 12px 16px;
+      }
+      .press-article-meta { grid-column: 1; grid-row: 1; flex-direction: row; align-items: center; flex-wrap: wrap; gap: 8px; }
+      .press-article-headline { grid-column: 1 / -1; grid-row: 2; font-size: 15px; }
+      .press-article-arrow { grid-column: 2; grid-row: 1; }
+      .press-article::after { left: 20px; right: 20px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 28px; margin-bottom: 36px; }
+      .footer-bottom { flex-direction: column; align-items: center; gap: 8px; }
+      .footer-legal { justify-content: center; }
+      footer { padding-top: 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- GNB -->
+<nav id="gnb" aria-label="메인 네비게이션">
+  <div class="gnb-inner">
+    <a href="index.html" class="gnb-logo" aria-label="Textway 홈으로 이동">
+      <img src="public/logo.png" alt="Textway" height="30">
+    </a>
+    <div class="gnb-nav" role="menubar">
+      <div class="gnb-item" role="none">
+        <button class="gnb-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+          서비스
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
+            <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="gnb-drop" role="menu">
+          <a href="index.html#products" class="gnb-drop-item" role="menuitem">tB Server 바로가기</a>
+          <a href="index.html#products" class="gnb-drop-item" role="menuitem">
+            tB Hub <span class="pill-amber">출시 예정</span>
+          </a>
+        </div>
+      </div>
+      <a href="press.html" class="gnb-link active" role="menuitem">보도자료</a>
+    </div>
+    <a href="index.html#contact" class="gnb-cta">문의하기</a>
+    <button class="gnb-burger" id="burgerBtn" aria-label="메뉴 열기">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div id="mobileMenu" role="dialog" aria-modal="true" aria-label="모바일 메뉴">
+  <button class="mob-close" id="menuCloseBtn" aria-label="메뉴 닫기">✕</button>
+  <a class="mob-link" href="index.html">서비스</a>
+  <a class="mob-sub" href="index.html#products">↳ tB Server 바로가기</a>
+  <a class="mob-sub" href="index.html#products">↳ tB Hub (출시 예정)</a>
+  <a class="mob-link active" href="press.html">보도자료</a>
+  <a class="mob-link" href="index.html#contact">문의하기</a>
+</div>
+
+<!-- PAGE HEADER -->
+<section id="page-header" data-screen-label="보도자료">
+  <div class="container">
+    <div class="page-header-inner reveal">
+      <div>
+        <span class="eyebrow">PRESS</span>
+        <h1 class="page-header-h1">보도자료</h1>
+        <p class="page-header-sub">Textway에 관한 주요 언론 보도입니다.</p>
+      </div>
+      <p class="press-count">3 articles</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS ARTICLES -->
+<section id="press-list">
+  <div class="container">
+    <div class="press-articles reveal" style="transition-delay:100ms">
+
+      <a href="https://wowtale.net/2025/11/06/249861/" target="_blank" rel="noopener noreferrer" class="press-article" aria-label="와우테일 기사 보기">
+        <div class="press-article-meta">
+          <span class="press-article-outlet">와우테일</span>
+          <span class="press-article-date">2024.11.06</span>
+          <span class="press-article-badge">언론보도</span>
+        </div>
+        <p class="press-article-headline">AI 지식 큐레이션 '텍스트웨이', MYSC서 시드 투자 유치…딥테크 팁스 선정</p>
+        <div class="press-article-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--grey-400)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 13L13 3M13 3H6M13 3v7"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="https://www.newswire.co.kr/newsRead.php?no=1024104" target="_blank" rel="noopener noreferrer" class="press-article" aria-label="뉴스와이어 기사 보기">
+        <div class="press-article-meta">
+          <span class="press-article-outlet">뉴스와이어</span>
+          <span class="press-article-date">2024.11.06</span>
+          <span class="press-article-badge">언론보도</span>
+        </div>
+        <p class="press-article-headline">텍스트웨이, 딥테크 팁스 선정 및 MYSC 투자 유치…기업과 고객 잇는 신개념 지식 관리 솔루션</p>
+        <div class="press-article-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--grey-400)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 13L13 3M13 3H6M13 3v7"/>
+          </svg>
+        </div>
+      </a>
+
+      <a href="https://www.venturesquare.net/1012474/" target="_blank" rel="noopener noreferrer" class="press-article" aria-label="벤처스퀘어 기사 보기">
+        <div class="press-article-meta">
+          <span class="press-article-outlet">벤처스퀘어</span>
+          <span class="press-article-date">2024.11.05</span>
+          <span class="press-article-badge">언론보도</span>
+        </div>
+        <p class="press-article-headline">MYSC, AI 지식 큐레이션 스타트업 '텍스트웨이'에 시드 익스텐션 투자</p>
+        <div class="press-article-arrow" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="var(--grey-400)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 13L13 3M13 3H6M13 3v7"/>
+          </svg>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="public/logo.png" alt="Textway" height="26">
+        </div>
+        <p class="footer-slogan">정보에 가치를 더합니다</p>
+      </div>
+      <div>
+        <p class="footer-col-title">링크</p>
+        <ul class="footer-links">
+          <li><a href="index.html#products">서비스</a></li>
+          <li><a href="press.html">보도자료</a></li>
+          <li><a href="index.html#contact">문의하기</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">연락처</p>
+        <div class="footer-contact">
+          <p><a href="mailto:contact@textway.net">contact@textway.net</a></p>
+          <p style="margin-top:10px">대구 북구 호암로 51<br>대구 삼성 창조캠퍼스 메이커스페이스</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <a href="#">서비스 이용약관</a>
+        <a href="#">개인정보 처리방침</a>
+      </div>
+      <p class="footer-copy">© 2026 Textway. All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const burgerBtn = document.getElementById('burgerBtn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuCloseBtn = document.getElementById('menuCloseBtn');
+  burgerBtn.addEventListener('click', () => {
+    mobileMenu.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    burgerBtn.setAttribute('aria-expanded', 'true');
+  });
+  menuCloseBtn.addEventListener('click', closeMob);
+  function closeMob() {
+    mobileMenu.classList.remove('open');
+    document.body.style.overflow = '';
+    burgerBtn.setAttribute('aria-expanded', 'false');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  // 폴드 위 요소: 브라우저가 초기 상태(opacity:0)를 한 프레임 그린 뒤 애니메이션 시작
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      document.querySelectorAll('#page-header .reveal').forEach(el => el.classList.add('visible'));
+    });
+  });
+</script>
+
+</body>
+</html>
