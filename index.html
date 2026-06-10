@@ -3,9 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Textway – 정보에 가치를 더합니다</title>
+    <title data-i18n="meta.title">Textway – 정보에 가치를 더합니다</title>
     <meta
       name="description"
+      data-i18n-attr="content=meta.desc"
       content="AI 모델 학습 없이 보안이 보장된 내부 문서를 실시간 참조하는 지능형 지식 관리 솔루션"
     />
     <link rel="icon" type="image/png" href="public/favicon.png" />
@@ -243,6 +244,64 @@
       .gnb-cta:hover {
         background: var(--blue-deep);
         transform: translateY(-1px);
+      }
+
+      /* ── Language switcher ── */
+      .gnb-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .gnb-lang {
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid var(--grey-200);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .gnb-lang .lang-btn {
+        padding: 6px 10px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 12px;
+        font-weight: 600;
+        line-height: 1;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--grey-400);
+        transition:
+          background 0.15s,
+          color 0.15s;
+      }
+      .gnb-lang .lang-btn.active {
+        background: var(--blue);
+        color: #fff;
+      }
+      .gnb-lang .lang-btn:not(.active):hover {
+        background: var(--blue-light);
+        color: var(--blue);
+      }
+      .mob-lang {
+        display: inline-flex;
+        align-self: flex-start;
+        margin-top: 28px;
+        border: 1px solid var(--grey-200);
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .mob-lang .lang-btn {
+        padding: 12px 22px;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 15px;
+        font-weight: 600;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--grey-400);
+      }
+      .mob-lang .lang-btn.active {
+        background: var(--blue);
+        color: #fff;
       }
 
       .gnb-burger {
@@ -771,34 +830,28 @@
         display: flex;
         align-items: center;
         gap: 72px;
-        animation: marquee 30s linear infinite;
         width: max-content;
+        will-change: transform;
       }
-      .marquee-outer:hover .marquee-track {
-        animation-play-state: paused;
-      }
-      @keyframes marquee {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-50%);
-        }
-      }
-      .partner-name {
-        height: 40px;
+      .partner-logo-wrap {
         display: flex;
         align-items: center;
-        font-size: 16px;
-        font-weight: 700;
-        color: rgba(255, 255, 255, 0.5);
-        white-space: nowrap;
-        transition: color 0.15s;
-        cursor: default;
-        letter-spacing: 0.01em;
+        justify-content: center;
+        flex-shrink: 0;
+        opacity: 0.6;
+        transition: opacity 0.2s;
       }
-      .partner-name:hover {
-        color: white;
+      .partner-logo-wrap:hover {
+        opacity: 1;
+      }
+      .partner-logo {
+        height: 32px;
+        width: auto;
+        max-width: 150px;
+        display: block;
+        object-fit: contain;
+        filter: grayscale(1) invert(1) brightness(0.9);
+        mix-blend-mode: screen;
       }
 
       /* Press */
@@ -1306,8 +1359,8 @@
         .marquee-outer {
           margin-bottom: 52px;
         }
-        .partner-name {
-          font-size: 14px;
+        .partner-logo {
+          height: 26px;
         }
         .marquee-track {
           gap: 48px;
@@ -1402,43 +1455,53 @@
   </head>
   <body>
     <!-- ════════════════════════════ GNB ════════════════════════════ -->
-    <nav id="gnb" aria-label="메인 네비게이션">
+    <nav id="gnb" aria-label="메인 네비게이션" data-i18n-attr="aria-label=nav.aria">
       <div class="gnb-inner">
-        <a href="#" class="gnb-logo" aria-label="Textway 홈으로 이동">
+        <a href="#" class="gnb-logo" aria-label="Textway 홈으로 이동" data-i18n-attr="aria-label=nav.logoAria">
           <img src="public/logo.png" alt="Textway" height="30" />
         </a>
         <div class="gnb-nav" role="menubar">
           <div class="gnb-item" role="none">
             <button class="gnb-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
-              서비스
+              <span data-i18n="nav.services">서비스</span>
               <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
                 <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
               </svg>
             </button>
             <div class="gnb-drop" role="menu">
-              <a href="#products" class="gnb-drop-item" role="menuitem">tB Server 바로가기</a>
-              <a href="#products" class="gnb-drop-item" role="menuitem">
+              <a href="#products" class="gnb-drop-item" role="menuitem" data-i18n="nav.tbserver">tB Server 바로가기</a>
+              <a href="#products" class="gnb-drop-item" role="menuitem" data-i18n-html="nav.tbhub">
                 tB Hub <span class="pill-amber">출시 예정</span>
               </a>
             </div>
           </div>
-          <a href="press.html" class="gnb-link" role="menuitem">보도자료</a>
+          <a href="press.html" class="gnb-link" role="menuitem" data-i18n="nav.press">보도자료</a>
         </div>
-        <a href="#contact" class="gnb-cta" aria-label="문의하기 섹션으로 이동">문의하기</a>
-        <button class="gnb-burger" id="burgerBtn" aria-label="메뉴 열기" aria-expanded="false">
+        <div class="gnb-actions">
+          <div class="gnb-lang" role="group" aria-label="Language">
+            <button type="button" class="lang-btn" data-lang="ko">KO</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+          <a href="#contact" class="gnb-cta" aria-label="문의하기 섹션으로 이동" data-i18n="nav.contact" data-i18n-attr="aria-label=nav.contactAria">문의하기</a>
+        </div>
+        <button class="gnb-burger" id="burgerBtn" aria-label="메뉴 열기" aria-expanded="false" data-i18n-attr="aria-label=nav.menuOpen">
           <span></span><span></span><span></span>
         </button>
       </div>
     </nav>
 
     <!-- Mobile Menu -->
-    <div id="mobileMenu" role="dialog" aria-label="모바일 메뉴" aria-modal="true">
-      <button class="mob-close" id="menuCloseBtn" aria-label="메뉴 닫기">✕</button>
-      <a class="mob-link" href="#" onclick="closeMob()">서비스</a>
-      <a class="mob-sub" href="#products" onclick="closeMob()">↳ tB Server 바로가기</a>
-      <a class="mob-sub" href="#products" onclick="closeMob()">↳ tB Hub (출시 예정)</a>
-      <a class="mob-link" href="press.html" onclick="closeMob()">보도자료</a>
-      <a class="mob-link" href="#contact" onclick="closeMob()">문의하기</a>
+    <div id="mobileMenu" role="dialog" aria-label="모바일 메뉴" aria-modal="true" data-i18n-attr="aria-label=mob.aria">
+      <button class="mob-close" id="menuCloseBtn" aria-label="메뉴 닫기" data-i18n-attr="aria-label=nav.menuClose">✕</button>
+      <a class="mob-link" href="#" onclick="closeMob()" data-i18n="nav.services">서비스</a>
+      <a class="mob-sub" href="#products" onclick="closeMob()" data-i18n="mob.tbserver">↳ tB Server 바로가기</a>
+      <a class="mob-sub" href="#products" onclick="closeMob()" data-i18n="mob.tbhub">↳ tB Hub (출시 예정)</a>
+      <a class="mob-link" href="press.html" onclick="closeMob()" data-i18n="nav.press">보도자료</a>
+      <a class="mob-link" href="#contact" onclick="closeMob()" data-i18n="nav.contact">문의하기</a>
+      <div class="mob-lang" role="group" aria-label="Language">
+        <button type="button" class="lang-btn" data-lang="ko">KO</button>
+        <button type="button" class="lang-btn" data-lang="en">EN</button>
+      </div>
     </div>
 
     <!-- ════════════════════════════ [01] HERO ════════════════════════════ -->
@@ -1456,10 +1519,10 @@
           <div id="heroAnsDots">&#9679;&thinsp;&#9679;&thinsp;&#9679;</div>
           <div id="heroAnsText"></div>
           <div id="heroAnsSrc" style="display: none">
-            <span class="src-lbl">출처</span>
-            <span class="src-file">규정집.pdf</span>
-            <span class="src-file">보고서.pdf</span>
-            <span class="src-file">매뉴얼.txt</span>
+            <span class="src-lbl" data-i18n="hero.srcLabel">출처</span>
+            <span class="src-file" data-i18n="hero.srcFile1">규정집.pdf</span>
+            <span class="src-file" data-i18n="hero.srcFile2">보고서.pdf</span>
+            <span class="src-file" data-i18n="hero.srcFile3">매뉴얼.txt</span>
           </div>
         </div>
       </div>
@@ -1468,32 +1531,33 @@
           <span class="eyebrow hero-anim" style="opacity: 0; transform: translateY(18px)" data-delay="0"
             >THE PATH TO INTELLIGENT TEXT INSIGHT</span
           >
-          <h1 class="hero-h1 hero-anim" style="opacity: 0; transform: translateY(18px)" data-delay="150">
+          <h1 class="hero-h1 hero-anim" style="opacity: 0; transform: translateY(18px)" data-delay="150" data-i18n="hero.h1a">
             정보에 가치를 더합니다
           </h1>
           <h1
             class="hero-h1 hero-anim"
             style="opacity: 0; transform: translateY(18px); margin-top: 4px"
             data-delay="280"
+            data-i18n-html="hero.h1b"
           >
             AI로 <span class="hero-h1-blue">텍스트의 가능성</span>을<br />확장합니다
           </h1>
-          <p class="hero-body hero-anim" style="opacity: 0; transform: translateY(18px)" data-delay="420">
+          <p class="hero-body hero-anim" style="opacity: 0; transform: translateY(18px)" data-delay="420" data-i18n-html="hero.body">
             데이터를 가두지 않고 활용합니다.<br />
             Textway는 AI 모델 학습 없이 보안이 보장된 내부 문서를<br />
             실시간 참조하여 가장 정교한 답변을 도출합니다.
           </p>
           <div class="hero-ctas hero-anim" style="opacity: 0; transform: translateY(18px)" data-delay="560">
-            <a href="#contact" class="btn-primary" aria-label="무료 도입 상담 신청하기">
-              무료 도입 상담하기
+            <a href="#contact" class="btn-primary" aria-label="무료 도입 상담 신청하기" data-i18n-attr="aria-label=hero.ctaPrimaryAria">
+              <span data-i18n="hero.ctaPrimary">무료 도입 상담하기</span>
               <span class="arr" aria-hidden="true">→</span>
             </a>
-            <a href="#" class="btn-ghost" aria-label="데모 영상 보기">
+            <a href="#" class="btn-ghost" aria-label="데모 영상 보기" data-i18n-attr="aria-label=hero.ctaDemoAria">
               <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
                 <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5" />
                 <path d="M6.5 5.5l5 2.5-5 2.5V5.5z" />
               </svg>
-              데모 영상 보기
+              <span data-i18n="hero.ctaDemo">데모 영상 보기</span>
             </a>
           </div>
         </div>
@@ -1505,7 +1569,7 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="eyebrow">CORE TECHNOLOGY</span>
-          <h2 class="section-h2">텍스트웨이의 3가지 기술적 차별점</h2>
+          <h2 class="section-h2" data-i18n="coretech.h2">텍스트웨이의 3가지 기술적 차별점</h2>
         </div>
         <div class="grid3">
           <div class="tech-card reveal" style="transition-delay: 0ms">
@@ -1528,8 +1592,8 @@
                 <line x1="18.3" y1="15.7" x2="14.2" y2="14.2" />
               </svg>
             </div>
-            <h3 class="card-h3">LLM·RAG 하이브리드</h3>
-            <p class="card-p">
+            <h3 class="card-h3" data-i18n="coretech.card1.h3">LLM·RAG 하이브리드</h3>
+            <p class="card-p" data-i18n="coretech.card1.p">
               단순 챗봇이 아닌, 초거대 AI 모델과 고밀도 검색 기술을 결합한 혁신적 접근으로 기업 내 문서에서 가장 정확한
               답변을 실시간으로 추출합니다.
             </p>
@@ -1549,8 +1613,8 @@
                 <path d="M9 12l2 2 4-4" />
               </svg>
             </div>
-            <h3 class="card-h3">완전한 보안 아키텍처</h3>
-            <p class="card-p">
+            <h3 class="card-h3" data-i18n="coretech.card2.h3">완전한 보안 아키텍처</h3>
+            <p class="card-p" data-i18n="coretech.card2.p">
               온프레미스·VPC 배포를 지원하며, 데이터가 외부로 나가지 않습니다. 철저한 권한 제어와 기존 KMS·스토리지
               시스템과의 완벽한 통합을 보장합니다.
             </p>
@@ -1573,8 +1637,8 @@
                 <path d="M9.5 10l1.5 1.5 3-3" />
               </svg>
             </div>
-            <h3 class="card-h3">검증된 사업성</h3>
-            <p class="card-p">
+            <h3 class="card-h3" data-i18n="coretech.card3.h3">검증된 사업성</h3>
+            <p class="card-p" data-i18n="coretech.card3.p">
               딥테크 팁스(TIPS) 선정, MYSC 시드 투자 유치, 한국가스공사·영남일보 등 공공·민간 PoC 성공. 기술력은 이미
               시장에서 검증되었습니다.
             </p>
@@ -1588,7 +1652,7 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="eyebrow">PRODUCT LINEUP</span>
-          <h2 class="section-h2">비즈니스 규모와 목적에 맞는<br />최적의 AI 솔루션</h2>
+          <h2 class="section-h2" data-i18n-html="products.h2">비즈니스 규모와 목적에 맞는<br />최적의 AI 솔루션</h2>
         </div>
         <div class="grid2">
           <!-- tB Server -->
@@ -1597,8 +1661,8 @@
               <span class="badge badge-ent">Enterprise Solution</span>
             </div>
             <h3 class="prod-h3">tB Server</h3>
-            <p class="prod-sub">사내 전용 AI 지식 인프라</p>
-            <p class="prod-desc">
+            <p class="prod-sub" data-i18n="products.server.sub">사내 전용 AI 지식 인프라</p>
+            <p class="prod-desc" data-i18n="products.server.desc">
               가장 안전한 사내 전용 지식 인프라를 구축합니다. AI 모델 학습 없이 보안이 보장된 내부 문서를 실시간
               참조하여 가장 정교한 답변을 도출합니다.
             </p>
@@ -1615,7 +1679,7 @@
                   >
                     <path d="M2 5l2 2 4-4" /></svg
                 ></span>
-                온프레미스 / VPC 배포
+                <span data-i18n="products.server.feat1">온프레미스 / VPC 배포</span>
               </li>
               <li>
                 <span class="chk"
@@ -1629,7 +1693,7 @@
                   >
                     <path d="M2 5l2 2 4-4" /></svg
                 ></span>
-                철저한 보안 권한 제어
+                <span data-i18n="products.server.feat2">철저한 보안 권한 제어</span>
               </li>
               <li>
                 <span class="chk"
@@ -1643,10 +1707,10 @@
                   >
                     <path d="M2 5l2 2 4-4" /></svg
                 ></span>
-                기존 KMS / 스토리지 통합
+                <span data-i18n="products.server.feat3">기존 KMS / 스토리지 통합</span>
               </li>
             </ul>
-            <a href="#" class="prod-cta" aria-label="tB Server 자세히 보기"> 자세히 보기 <span class="arr">→</span> </a>
+            <a href="#" class="prod-cta" aria-label="tB Server 자세히 보기" data-i18n-attr="aria-label=products.server.ctaAria"> <span data-i18n="products.learnMore">자세히 보기</span> <span class="arr">→</span> </a>
           </div>
 
           <!-- tB Hub -->
@@ -1656,8 +1720,8 @@
               <span class="badge badge-soon">COMING SOON</span>
             </div>
             <h3 class="prod-h3">tB Hub</h3>
-            <p class="prod-sub">클라우드 기반 AI 지식 관리</p>
-            <p class="prod-desc">
+            <p class="prod-sub" data-i18n="products.hub.sub">클라우드 기반 AI 지식 관리</p>
+            <p class="prod-desc" data-i18n="products.hub.desc">
               복잡한 인프라 관리 없이 시작하는 온라인 호스팅 서비스. 더 가볍고 빠르게 Textway의 기술 경험을 시작하세요.
             </p>
             <ul class="prod-feats">
@@ -1673,7 +1737,7 @@
                   >
                     <path d="M2 5l2 2 4-4" /></svg
                 ></span>
-                2026 하반기 정식 출시 예정
+                <span data-i18n="products.hub.feat1">2026 하반기 정식 출시 예정</span>
               </li>
               <li>
                 <span class="chk" style="background: #fef3c7"
@@ -1687,7 +1751,7 @@
                   >
                     <path d="M2 5l2 2 4-4" /></svg
                 ></span>
-                원클릭 온라인 배포
+                <span data-i18n="products.hub.feat2">원클릭 온라인 배포</span>
               </li>
               <li>
                 <span class="chk" style="background: #fef3c7"
@@ -1701,10 +1765,10 @@
                   >
                     <path d="M2 5l2 2 4-4" /></svg
                 ></span>
-                구독 기반 유연한 모델
+                <span data-i18n="products.hub.feat3">구독 기반 유연한 모델</span>
               </li>
             </ul>
-            <a href="#contact" class="prod-ghost" aria-label="tB Hub 출시 알림 신청">출시 알림 받기</a>
+            <a href="#contact" class="prod-ghost" aria-label="tB Hub 출시 알림 신청" data-i18n="products.hub.notify" data-i18n-attr="aria-label=products.hub.notifyAria">출시 알림 받기</a>
           </div>
         </div>
       </div>
@@ -1733,8 +1797,8 @@
               </svg>
             </div>
             <div class="achieve-text">
-              딥테크 팁스(TIPS) 선정
-              <small>2024 · 중소벤처기업부</small>
+              <span data-i18n="social.ach1.t">딥테크 팁스(TIPS) 선정</span>
+              <small data-i18n="social.ach1.s">2024 · 중소벤처기업부</small>
             </div>
           </div>
           <div class="achieve-item">
@@ -1756,8 +1820,8 @@
               </svg>
             </div>
             <div class="achieve-text">
-              MYSC 시드 투자 유치
-              <small>완료 · 시드 익스텐션</small>
+              <span data-i18n="social.ach2.t">MYSC 시드 투자 유치</span>
+              <small data-i18n="social.ach2.s">완료 · 시드 익스텐션</small>
             </div>
           </div>
           <div class="achieve-item">
@@ -1779,8 +1843,8 @@
               </svg>
             </div>
             <div class="achieve-text">
-              대구 삼성 창조캠퍼스 입주
-              <small>공식 입주기업 · 메이커스페이스</small>
+              <span data-i18n="social.ach3.t">대구 삼성 창조캠퍼스 입주</span>
+              <small data-i18n="social.ach3.s">공식 입주기업 · 메이커스페이스</small>
             </div>
           </div>
         </div>
@@ -1791,50 +1855,53 @@
           <h2
             class="section-h2 trust-header"
             style="text-align: center; color: white; font-size: 30px; margin-bottom: 0"
+            data-i18n="social.trustH2"
           >
             협력 파트너 및 PoC 진행 기업
           </h2>
-          <p>신뢰할 수 있는 파트너들과 함께합니다</p>
+          <p data-i18n="social.trustP">신뢰할 수 있는 파트너들과 함께합니다</p>
         </div>
         <div class="marquee-outer" aria-hidden="true">
           <div class="marquee-track">
-            <span class="partner-name">영남일보</span>
-            <span class="partner-name">한국가스공사</span>
-            <span class="partner-name">MYSC</span>
-            <span class="partner-name">Y&amp;ARCHER</span>
-            <span class="partner-name">AC:DC</span>
-            <span class="partner-name">동아일보</span>
-            <span class="partner-name">영남일보</span>
-            <span class="partner-name">한국가스공사</span>
-            <span class="partner-name">MYSC</span>
-            <span class="partner-name">Y&amp;ARCHER</span>
-            <span class="partner-name">AC:DC</span>
-            <span class="partner-name">동아일보</span>
+            <div class="partner-logo-wrap"><img src="public/6.avif" alt="한국가스공사" class="partner-logo" data-i18n-attr="alt=social.partner.kogas" /></div>
+            <div class="partner-logo-wrap"><img src="public/5.avif" alt="MYSC" class="partner-logo" /></div>
+            <div class="partner-logo-wrap"><img src="public/4.avif" alt="Y&amp;ARCHER" class="partner-logo" /></div>
+            <div class="partner-logo-wrap"><img src="public/3.avif" alt="AC:DC" class="partner-logo" /></div>
+            <div class="partner-logo-wrap"><img src="public/2.avif" alt="동아일보" class="partner-logo" data-i18n-attr="alt=social.partner.donga" /></div>
+            <div class="partner-logo-wrap"><img src="public/1.avif" alt="영남일보" class="partner-logo" data-i18n-attr="alt=social.partner.yeongnam" /></div>
+            <div class="partner-logo-wrap"><img src="public/6.avif" alt="한국가스공사" class="partner-logo" data-i18n-attr="alt=social.partner.kogas" /></div>
+            <div class="partner-logo-wrap"><img src="public/5.avif" alt="MYSC" class="partner-logo" /></div>
+            <div class="partner-logo-wrap"><img src="public/4.avif" alt="Y&amp;ARCHER" class="partner-logo" /></div>
+            <div class="partner-logo-wrap"><img src="public/3.avif" alt="AC:DC" class="partner-logo" /></div>
+            <div class="partner-logo-wrap"><img src="public/2.avif" alt="동아일보" class="partner-logo" data-i18n-attr="alt=social.partner.donga" /></div>
+            <div class="partner-logo-wrap"><img src="public/1.avif" alt="영남일보" class="partner-logo" data-i18n-attr="alt=social.partner.yeongnam" /></div>
           </div>
         </div>
 
         <!-- Press cards -->
-        <p class="press-title reveal">주요 언론 보도</p>
+        <p class="press-title reveal" data-i18n="social.pressTitle">주요 언론 보도</p>
         <div class="press-grid">
           <div class="press-card reveal">
-            <span class="press-badge">언론보도</span>
-            <p class="press-date">2024년 11월 6일</p>
-            <p class="press-media">와우테일</p>
-            <p class="press-headline">AI 지식 큐레이션 '텍스트웨이', MYSC서 시드 투자 유치…딥테크 팁스 선정</p>
+            <span class="press-badge" data-i18n="social.pressBadge">언론보도</span>
+            <p class="press-date" data-i18n="social.press1.date">2024년 11월 6일</p>
+            <p class="press-media" data-i18n="social.press1.media">와우테일</p>
+            <p class="press-headline" data-i18n="social.press1.headline">AI 지식 큐레이션 '텍스트웨이', MYSC서 시드 투자 유치…딥테크 팁스 선정</p>
             <a
               href="https://wowtale.net/2025/11/06/249861/"
               class="press-link"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="와우테일 기사 자세히 보기"
+              data-i18n="social.pressLink"
+              data-i18n-attr="aria-label=social.press1.aria"
               >자세히 보기 ↗</a
             >
           </div>
           <div class="press-card reveal" style="transition-delay: 100ms">
-            <span class="press-badge">언론보도</span>
-            <p class="press-date">2024년 11월 6일</p>
-            <p class="press-media">뉴스와이어</p>
-            <p class="press-headline">
+            <span class="press-badge" data-i18n="social.pressBadge">언론보도</span>
+            <p class="press-date" data-i18n="social.press2.date">2024년 11월 6일</p>
+            <p class="press-media" data-i18n="social.press2.media">뉴스와이어</p>
+            <p class="press-headline" data-i18n="social.press2.headline">
               텍스트웨이, 딥테크 팁스 선정 및 MYSC 투자 유치…기업과 고객 잇는 신개념 지식 관리 솔루션
             </p>
             <a
@@ -1843,20 +1910,24 @@
               target="_blank"
               rel="noopener noreferrer"
               aria-label="뉴스와이어 기사 자세히 보기"
+              data-i18n="social.pressLink"
+              data-i18n-attr="aria-label=social.press2.aria"
               >자세히 보기 ↗</a
             >
           </div>
           <div class="press-card reveal" style="transition-delay: 200ms">
-            <span class="press-badge">언론보도</span>
-            <p class="press-date">2024년 11월 5일</p>
-            <p class="press-media">벤처스퀘어</p>
-            <p class="press-headline">MYSC, AI 지식 큐레이션 스타트업 '텍스트웨이'에 시드 익스텐션 투자</p>
+            <span class="press-badge" data-i18n="social.pressBadge">언론보도</span>
+            <p class="press-date" data-i18n="social.press3.date">2024년 11월 5일</p>
+            <p class="press-media" data-i18n="social.press3.media">벤처스퀘어</p>
+            <p class="press-headline" data-i18n="social.press3.headline">MYSC, AI 지식 큐레이션 스타트업 '텍스트웨이'에 시드 익스텐션 투자</p>
             <a
               href="https://www.venturesquare.net/1012474/"
               class="press-link"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="벤처스퀘어 기사 자세히 보기"
+              data-i18n="social.pressLink"
+              data-i18n-attr="aria-label=social.press3.aria"
               >자세히 보기 ↗</a
             >
           </div>
@@ -1869,25 +1940,25 @@
       <div class="container">
         <div class="section-header reveal">
           <span class="eyebrow">CONTACT US</span>
-          <h2 class="section-h2">Textway와 함께<br />미래를 연결하세요</h2>
-          <p>비즈니스 최적화를 위한 지능형 AI 솔루션 상담을 도와드립니다.</p>
+          <h2 class="section-h2" data-i18n-html="contact.h2">Textway와 함께<br />미래를 연결하세요</h2>
+          <p data-i18n="contact.sub">비즈니스 최적화를 위한 지능형 AI 솔루션 상담을 도와드립니다.</p>
         </div>
         <div class="contact-grid">
           <!-- Form -->
           <div class="form-wrap reveal">
             <form id="contactForm" novalidate>
               <div class="fgroup">
-                <label class="flabel" for="fType">문의 유형 <span class="req">*</span></label>
+                <label class="flabel" for="fType"><span data-i18n="contact.typeLabel">문의 유형</span> <span class="req">*</span></label>
                 <select class="fcontrol" id="fType" name="type" aria-required="true">
-                  <option value="">문의 유형을 선택하세요</option>
-                  <option value="general">일반 문의</option>
-                  <option value="partnership">파트너십 제안/도입 문의</option>
-                  <option value="tbhub">tB Hub 출시 알림 신청</option>
+                  <option value="" data-i18n="contact.typePlaceholder">문의 유형을 선택하세요</option>
+                  <option value="general" data-i18n="contact.typeGeneral">일반 문의</option>
+                  <option value="partnership" data-i18n="contact.typePartnership">파트너십 제안/도입 문의</option>
+                  <option value="tbhub" data-i18n="contact.typeTbhub">tB Hub 출시 알림 신청</option>
                 </select>
-                <p class="ferr" id="fTypeErr" role="alert">문의 유형을 선택해 주세요.</p>
+                <p class="ferr" id="fTypeErr" role="alert" data-i18n="contact.typeErr">문의 유형을 선택해 주세요.</p>
               </div>
               <div class="fgroup">
-                <label class="flabel" for="fName">성함(회사명) <span class="req">*</span></label>
+                <label class="flabel" for="fName"><span data-i18n="contact.nameLabel">성함(회사명)</span> <span class="req">*</span></label>
                 <input
                   class="fcontrol"
                   type="text"
@@ -1895,11 +1966,12 @@
                   name="name"
                   placeholder="성함 또는 회사명을 입력하세요"
                   aria-required="true"
+                  data-i18n-attr="placeholder=contact.namePlaceholder"
                 />
-                <p class="ferr" id="fNameErr" role="alert">성함 또는 회사명을 입력해 주세요.</p>
+                <p class="ferr" id="fNameErr" role="alert" data-i18n="contact.nameErr">성함 또는 회사명을 입력해 주세요.</p>
               </div>
               <div class="fgroup">
-                <label class="flabel" for="fEmail">연락처 (이메일) <span class="req">*</span></label>
+                <label class="flabel" for="fEmail"><span data-i18n="contact.emailLabel">연락처 (이메일)</span> <span class="req">*</span></label>
                 <input
                   class="fcontrol"
                   type="email"
@@ -1907,11 +1979,12 @@
                   name="email"
                   placeholder="답변 받으실 이메일을 입력하세요"
                   aria-required="true"
+                  data-i18n-attr="placeholder=contact.emailPlaceholder"
                 />
-                <p class="ferr" id="fEmailErr" role="alert">올바른 이메일 주소를 입력해 주세요.</p>
+                <p class="ferr" id="fEmailErr" role="alert" data-i18n="contact.emailErr">올바른 이메일 주소를 입력해 주세요.</p>
               </div>
               <div class="fgroup">
-                <label class="flabel" for="fMsg">문의 내용 <span class="req">*</span></label>
+                <label class="flabel" for="fMsg"><span data-i18n="contact.msgLabel">문의 내용</span> <span class="req">*</span></label>
                 <textarea
                   class="fcontrol"
                   id="fMsg"
@@ -1919,14 +1992,15 @@
                   rows="5"
                   placeholder="문의하실 내용을 자유롭게 작성해 주세요"
                   aria-required="true"
+                  data-i18n-attr="placeholder=contact.msgPlaceholder"
                 ></textarea>
-                <p class="ferr" id="fMsgErr" role="alert">문의 내용을 입력해 주세요.</p>
+                <p class="ferr" id="fMsgErr" role="alert" data-i18n="contact.msgErr">문의 내용을 입력해 주세요.</p>
               </div>
               <div class="fgroup">
                 <div class="privacy-row">
                   <input type="checkbox" class="privacy-cb" id="privacyCb" aria-required="true" />
                   <label class="privacy-lbl" for="privacyCb">
-                    개인정보 수집·이용에 동의합니다.
+                    <span data-i18n="contact.privacyAgree">개인정보 수집·이용에 동의합니다.</span>
                     <button
                       type="button"
                       class="privacy-toggle"
@@ -1938,14 +2012,14 @@
                     </button>
                   </label>
                 </div>
-                <div class="privacy-detail" id="privacyDetail" aria-hidden="true">
+                <div class="privacy-detail" id="privacyDetail" aria-hidden="true" data-i18n-html="contact.privacyDetail">
                   수집 항목: 성함/회사명, 이메일, 문의 내용<br />
                   수집 목적: 도입 상담 및 문의 처리<br />
                   보유 기간: 문의 처리 완료 후 1년
                 </div>
-                <p class="ferr" id="fPrivacyErr" role="alert">개인정보 수집·이용에 동의해 주세요.</p>
+                <p class="ferr" id="fPrivacyErr" role="alert" data-i18n="contact.privacyErr">개인정보 수집·이용에 동의해 주세요.</p>
               </div>
-              <button type="submit" class="submit-btn" id="submitBtn" aria-label="문의 보내기">문의 보내기 →</button>
+              <button type="submit" class="submit-btn" id="submitBtn" aria-label="문의 보내기" data-i18n-attr="aria-label=contact.submitAria">문의 보내기 →</button>
             </form>
           </div>
 
@@ -1988,7 +2062,7 @@
               </div>
               <div>
                 <p class="cinfo-lbl">OFFICE</p>
-                <p class="cinfo-val">대구 북구 호암로 51,<br />대구 삼성 창조캠퍼스 메이커스페이스</p>
+                <p class="cinfo-val" data-i18n-html="contact.office">대구 북구 호암로 51,<br />대구 삼성 창조캠퍼스 메이커스페이스</p>
               </div>
             </div>
             <div class="cinfo-item">
@@ -2010,8 +2084,8 @@
                 <p class="cinfo-lbl">BUSINESS HOURS</p>
                 <div class="cinfo-val">
                   <div class="hours">
-                    <span>평일 운영</span><span>10:00 – 17:00</span> <span>점심 시간</span><span>12:00 – 13:00</span>
-                    <span class="off">주말 및 공휴일</span><span class="off">휴무</span>
+                    <span data-i18n="contact.hoursWeekday">평일 운영</span><span>10:00 – 17:00</span> <span data-i18n="contact.hoursLunch">점심 시간</span><span>12:00 – 13:00</span>
+                    <span class="off" data-i18n="contact.hoursWeekend">주말 및 공휴일</span><span class="off" data-i18n="contact.hoursClosed">휴무</span>
                   </div>
                 </div>
               </div>
@@ -2029,28 +2103,28 @@
             <div class="footer-logo">
               <img src="public/logo.png" alt="Textway" height="26" />
             </div>
-            <p class="footer-slogan">정보에 가치를 더합니다</p>
+            <p class="footer-slogan" data-i18n="footer.slogan">정보에 가치를 더합니다</p>
           </div>
           <div>
-            <p class="footer-col-title">링크</p>
+            <p class="footer-col-title" data-i18n="footer.linksTitle">링크</p>
             <ul class="footer-links">
-              <li><a href="#products">서비스</a></li>
-              <li><a href="press.html">보도자료</a></li>
-              <li><a href="#contact">문의하기</a></li>
+              <li><a href="#products" data-i18n="nav.servicesPlain">서비스</a></li>
+              <li><a href="press.html" data-i18n="nav.press">보도자료</a></li>
+              <li><a href="#contact" data-i18n="nav.contact">문의하기</a></li>
             </ul>
           </div>
           <div>
-            <p class="footer-col-title">연락처</p>
+            <p class="footer-col-title" data-i18n="footer.contactTitle">연락처</p>
             <div class="footer-contact">
               <p><a href="mailto:contact@textway.net">contact@textway.net</a></p>
-              <p style="margin-top: 10px">대구 북구 호암로 51<br />대구 삼성 창조캠퍼스 메이커스페이스</p>
+              <p style="margin-top: 10px" data-i18n-html="footer.address">대구 북구 호암로 51<br />대구 삼성 창조캠퍼스 메이커스페이스</p>
             </div>
           </div>
         </div>
         <div class="footer-bottom">
           <div class="footer-legal">
-            <a href="#">서비스 이용약관</a>
-            <a href="#">개인정보 처리방침</a>
+            <a href="#" data-i18n="footer.terms">서비스 이용약관</a>
+            <a href="#" data-i18n="footer.privacy">개인정보 처리방침</a>
           </div>
           <p class="footer-copy">© 2026 Textway. All rights reserved.</p>
         </div>
@@ -2058,6 +2132,320 @@
     </footer>
 
     <script>
+      /* ════════════════════ i18n (KO / EN) ════════════════════ */
+      const TW_CANVAS = {
+        ko: {
+          labels: ['보고서.pdf', '회의록.docx', '매뉴얼.txt', '규정집.pdf', '공지사항', 'FAQ', '제품설명서', '계약서'],
+          q: '안전 규정 변경사항은?',
+          ans: '2024년 3월 개정 기준, 안전관리책임자 선임 기준이 변경되었습니다.',
+        },
+        en: {
+          labels: ['report.pdf', 'minutes.docx', 'manual.txt', 'policy.pdf', 'notice', 'FAQ', 'product-guide', 'contract'],
+          q: 'What changed in the safety rules?',
+          ans: 'As of the March 2024 revision, the criteria for appointing a safety manager have changed.',
+        },
+      };
+      const I18N = {
+        ko: {
+          'meta.title': 'Textway – 정보에 가치를 더합니다',
+          'meta.desc': 'AI 모델 학습 없이 보안이 보장된 내부 문서를 실시간 참조하는 지능형 지식 관리 솔루션',
+          'nav.aria': '메인 네비게이션',
+          'nav.logoAria': 'Textway 홈으로 이동',
+          'nav.services': '서비스',
+          'nav.servicesPlain': '서비스',
+          'nav.tbserver': 'tB Server 바로가기',
+          'nav.tbhub': 'tB Hub <span class="pill-amber">출시 예정</span>',
+          'nav.press': '보도자료',
+          'nav.contact': '문의하기',
+          'nav.contactAria': '문의하기 섹션으로 이동',
+          'nav.menuOpen': '메뉴 열기',
+          'nav.menuClose': '메뉴 닫기',
+          'mob.aria': '모바일 메뉴',
+          'mob.tbserver': '↳ tB Server 바로가기',
+          'mob.tbhub': '↳ tB Hub (출시 예정)',
+          'hero.h1a': '정보에 가치를 더합니다',
+          'hero.h1b': 'AI로 <span class="hero-h1-blue">텍스트의 가능성</span>을<br />확장합니다',
+          'hero.body':
+            '데이터를 가두지 않고 활용합니다.<br />Textway는 AI 모델 학습 없이 보안이 보장된 내부 문서를<br />실시간 참조하여 가장 정교한 답변을 도출합니다.',
+          'hero.ctaPrimary': '무료 도입 상담하기',
+          'hero.ctaPrimaryAria': '무료 도입 상담 신청하기',
+          'hero.ctaDemo': '데모 영상 보기',
+          'hero.ctaDemoAria': '데모 영상 보기',
+          'hero.srcLabel': '출처',
+          'hero.srcFile1': '규정집.pdf',
+          'hero.srcFile2': '보고서.pdf',
+          'hero.srcFile3': '매뉴얼.txt',
+          'coretech.h2': '텍스트웨이의 3가지 기술적 차별점',
+          'coretech.card1.h3': 'LLM·RAG 하이브리드',
+          'coretech.card1.p':
+            '단순 챗봇이 아닌, 초거대 AI 모델과 고밀도 검색 기술을 결합한 혁신적 접근으로 기업 내 문서에서 가장 정확한 답변을 실시간으로 추출합니다.',
+          'coretech.card2.h3': '완전한 보안 아키텍처',
+          'coretech.card2.p':
+            '온프레미스·VPC 배포를 지원하며, 데이터가 외부로 나가지 않습니다. 철저한 권한 제어와 기존 KMS·스토리지 시스템과의 완벽한 통합을 보장합니다.',
+          'coretech.card3.h3': '검증된 사업성',
+          'coretech.card3.p':
+            '딥테크 팁스(TIPS) 선정, MYSC 시드 투자 유치, 한국가스공사·영남일보 등 공공·민간 PoC 성공. 기술력은 이미 시장에서 검증되었습니다.',
+          'products.h2': '비즈니스 규모와 목적에 맞는<br />최적의 AI 솔루션',
+          'products.server.sub': '사내 전용 AI 지식 인프라',
+          'products.server.desc':
+            '가장 안전한 사내 전용 지식 인프라를 구축합니다. AI 모델 학습 없이 보안이 보장된 내부 문서를 실시간 참조하여 가장 정교한 답변을 도출합니다.',
+          'products.server.feat1': '온프레미스 / VPC 배포',
+          'products.server.feat2': '철저한 보안 권한 제어',
+          'products.server.feat3': '기존 KMS / 스토리지 통합',
+          'products.learnMore': '자세히 보기',
+          'products.server.ctaAria': 'tB Server 자세히 보기',
+          'products.hub.sub': '클라우드 기반 AI 지식 관리',
+          'products.hub.desc':
+            '복잡한 인프라 관리 없이 시작하는 온라인 호스팅 서비스. 더 가볍고 빠르게 Textway의 기술 경험을 시작하세요.',
+          'products.hub.feat1': '2026 하반기 정식 출시 예정',
+          'products.hub.feat2': '원클릭 온라인 배포',
+          'products.hub.feat3': '구독 기반 유연한 모델',
+          'products.hub.notify': '출시 알림 받기',
+          'products.hub.notifyAria': 'tB Hub 출시 알림 신청',
+          'social.ach1.t': '딥테크 팁스(TIPS) 선정',
+          'social.ach1.s': '2024 · 중소벤처기업부',
+          'social.ach2.t': 'MYSC 시드 투자 유치',
+          'social.ach2.s': '완료 · 시드 익스텐션',
+          'social.ach3.t': '대구 삼성 창조캠퍼스 입주',
+          'social.ach3.s': '공식 입주기업 · 메이커스페이스',
+          'social.trustH2': '협력 파트너 및 PoC 진행 기업',
+          'social.trustP': '신뢰할 수 있는 파트너들과 함께합니다',
+          'social.partner.kogas': '한국가스공사',
+          'social.partner.donga': '동아일보',
+          'social.partner.yeongnam': '영남일보',
+          'social.pressTitle': '주요 언론 보도',
+          'social.pressBadge': '언론보도',
+          'social.pressLink': '자세히 보기 ↗',
+          'social.press1.date': '2024년 11월 6일',
+          'social.press1.media': '와우테일',
+          'social.press1.headline': "AI 지식 큐레이션 '텍스트웨이', MYSC서 시드 투자 유치…딥테크 팁스 선정",
+          'social.press1.aria': '와우테일 기사 자세히 보기',
+          'social.press2.date': '2024년 11월 6일',
+          'social.press2.media': '뉴스와이어',
+          'social.press2.headline': '텍스트웨이, 딥테크 팁스 선정 및 MYSC 투자 유치…기업과 고객 잇는 신개념 지식 관리 솔루션',
+          'social.press2.aria': '뉴스와이어 기사 자세히 보기',
+          'social.press3.date': '2024년 11월 5일',
+          'social.press3.media': '벤처스퀘어',
+          'social.press3.headline': "MYSC, AI 지식 큐레이션 스타트업 '텍스트웨이'에 시드 익스텐션 투자",
+          'social.press3.aria': '벤처스퀘어 기사 자세히 보기',
+          'contact.h2': 'Textway와 함께<br />미래를 연결하세요',
+          'contact.sub': '비즈니스 최적화를 위한 지능형 AI 솔루션 상담을 도와드립니다.',
+          'contact.typeLabel': '문의 유형',
+          'contact.typePlaceholder': '문의 유형을 선택하세요',
+          'contact.typeGeneral': '일반 문의',
+          'contact.typePartnership': '파트너십 제안/도입 문의',
+          'contact.typeTbhub': 'tB Hub 출시 알림 신청',
+          'contact.typeErr': '문의 유형을 선택해 주세요.',
+          'contact.nameLabel': '성함(회사명)',
+          'contact.namePlaceholder': '성함 또는 회사명을 입력하세요',
+          'contact.nameErr': '성함 또는 회사명을 입력해 주세요.',
+          'contact.emailLabel': '연락처 (이메일)',
+          'contact.emailPlaceholder': '답변 받으실 이메일을 입력하세요',
+          'contact.emailErr': '올바른 이메일 주소를 입력해 주세요.',
+          'contact.msgLabel': '문의 내용',
+          'contact.msgPlaceholder': '문의하실 내용을 자유롭게 작성해 주세요',
+          'contact.msgErr': '문의 내용을 입력해 주세요.',
+          'contact.privacyAgree': '개인정보 수집·이용에 동의합니다.',
+          'contact.privacyView': '[내용 보기]',
+          'contact.privacyClose': '[닫기]',
+          'contact.privacyDetail':
+            '수집 항목: 성함/회사명, 이메일, 문의 내용<br />수집 목적: 도입 상담 및 문의 처리<br />보유 기간: 문의 처리 완료 후 1년',
+          'contact.privacyErr': '개인정보 수집·이용에 동의해 주세요.',
+          'contact.submit': '문의 보내기 →',
+          'contact.submitAria': '문의 보내기',
+          'contact.sending': '전송 중…',
+          'contact.received': '✓ 문의가 접수되었습니다',
+          'contact.office': '대구 북구 호암로 51,<br />대구 삼성 창조캠퍼스 메이커스페이스',
+          'contact.hoursWeekday': '평일 운영',
+          'contact.hoursLunch': '점심 시간',
+          'contact.hoursWeekend': '주말 및 공휴일',
+          'contact.hoursClosed': '휴무',
+          'footer.slogan': '정보에 가치를 더합니다',
+          'footer.linksTitle': '링크',
+          'footer.contactTitle': '연락처',
+          'footer.address': '대구 북구 호암로 51<br />대구 삼성 창조캠퍼스 메이커스페이스',
+          'footer.terms': '서비스 이용약관',
+          'footer.privacy': '개인정보 처리방침',
+        },
+        en: {
+          'meta.title': 'Textway – We Add Value to Information',
+          'meta.desc':
+            'An intelligent knowledge management solution that references secured internal documents in real time — without training AI models.',
+          'nav.aria': 'Main navigation',
+          'nav.logoAria': 'Go to Textway home',
+          'nav.services': 'Services',
+          'nav.servicesPlain': 'Services',
+          'nav.tbserver': 'Go to tB Server',
+          'nav.tbhub': 'tB Hub <span class="pill-amber">Coming Soon</span>',
+          'nav.press': 'Press',
+          'nav.contact': 'Contact',
+          'nav.contactAria': 'Go to the contact section',
+          'nav.menuOpen': 'Open menu',
+          'nav.menuClose': 'Close menu',
+          'mob.aria': 'Mobile menu',
+          'mob.tbserver': '↳ Go to tB Server',
+          'mob.tbhub': '↳ tB Hub (Coming Soon)',
+          'hero.h1a': 'We add value to information',
+          'hero.h1b': 'Expanding the <span class="hero-h1-blue">potential of text</span><br />with AI',
+          'hero.body':
+            'Use your data without locking it away.<br />Textway references secured internal documents in real time —<br />without training AI models — to deliver the most precise answers.',
+          'hero.ctaPrimary': 'Get a Free Consultation',
+          'hero.ctaPrimaryAria': 'Request a free consultation',
+          'hero.ctaDemo': 'Watch Demo',
+          'hero.ctaDemoAria': 'Watch demo video',
+          'hero.srcLabel': 'Source',
+          'hero.srcFile1': 'policy.pdf',
+          'hero.srcFile2': 'report.pdf',
+          'hero.srcFile3': 'manual.txt',
+          'coretech.h2': 'Three Technical Advantages of Textway',
+          'coretech.card1.h3': 'LLM·RAG Hybrid',
+          'coretech.card1.p':
+            'Far beyond a simple chatbot, our innovative approach combines large-scale AI models with high-density retrieval to extract the most accurate answers from your enterprise documents in real time.',
+          'coretech.card2.h3': 'Fully Secure Architecture',
+          'coretech.card2.p':
+            'With on-premise and VPC deployment, your data never leaves your environment. We guarantee rigorous access control and seamless integration with your existing KMS and storage systems.',
+          'coretech.card3.h3': 'Proven Business Viability',
+          'coretech.card3.p':
+            'Selected for Deep-Tech TIPS, backed by MYSC seed investment, and proven through successful public and private PoCs with KOGAS, Yeongnam Ilbo, and more. Our technology is already validated in the market.',
+          'products.h2': 'The Right AI Solution<br />for Your Business Scale and Goals',
+          'products.server.sub': 'On-premise AI knowledge infrastructure',
+          'products.server.desc':
+            'Build the most secure in-house knowledge infrastructure. Textway references secured internal documents in real time — without training AI models — to deliver the most precise answers.',
+          'products.server.feat1': 'On-premise / VPC deployment',
+          'products.server.feat2': 'Rigorous security & access control',
+          'products.server.feat3': 'Integration with existing KMS / storage',
+          'products.learnMore': 'Learn More',
+          'products.server.ctaAria': 'Learn more about tB Server',
+          'products.hub.sub': 'Cloud-based AI knowledge management',
+          'products.hub.desc':
+            "An online hosting service you can start without complex infrastructure management. Experience Textway's technology faster and lighter.",
+          'products.hub.feat1': 'Official launch in H2 2026',
+          'products.hub.feat2': 'One-click online deployment',
+          'products.hub.feat3': 'Flexible subscription-based model',
+          'products.hub.notify': 'Get Launch Updates',
+          'products.hub.notifyAria': 'Sign up for tB Hub launch updates',
+          'social.ach1.t': 'Selected for Deep-Tech TIPS',
+          'social.ach1.s': '2024 · Ministry of SMEs and Startups',
+          'social.ach2.t': 'MYSC Seed Investment',
+          'social.ach2.s': 'Closed · Seed Extension',
+          'social.ach3.t': 'Resident at Daegu Samsung Creative Campus',
+          'social.ach3.s': 'Official resident · Makerspace',
+          'social.trustH2': 'Partners & PoC Companies',
+          'social.trustP': 'Working with partners you can trust',
+          'social.partner.kogas': 'Korea Gas Corporation',
+          'social.partner.donga': 'Dong-A Ilbo',
+          'social.partner.yeongnam': 'Yeongnam Ilbo',
+          'social.pressTitle': 'In the Press',
+          'social.pressBadge': 'Press',
+          'social.pressLink': 'Read More ↗',
+          'social.press1.date': 'Nov 6, 2024',
+          'social.press1.media': 'Wowtale',
+          'social.press1.headline':
+            "AI Knowledge Curation Startup 'Textway' Raises Seed Investment from MYSC, Selected for Deep-Tech TIPS",
+          'social.press1.aria': 'Read the full Wowtale article',
+          'social.press2.date': 'Nov 6, 2024',
+          'social.press2.media': 'Newswire',
+          'social.press2.headline':
+            'Textway Selected for Deep-Tech TIPS and Backed by MYSC — A New Kind of Knowledge Management Solution Connecting Businesses and Customers',
+          'social.press2.aria': 'Read the full Newswire article',
+          'social.press3.date': 'Nov 5, 2024',
+          'social.press3.media': 'Venturesquare',
+          'social.press3.headline':
+            "MYSC Invests in the Seed Extension Round of AI Knowledge Curation Startup 'Textway'",
+          'social.press3.aria': 'Read the full Venturesquare article',
+          'contact.h2': 'Connect the Future<br />with Textway',
+          'contact.sub': 'Let us help you with an intelligent AI solution tailored to optimize your business.',
+          'contact.typeLabel': 'Inquiry Type',
+          'contact.typePlaceholder': 'Select an inquiry type',
+          'contact.typeGeneral': 'General inquiry',
+          'contact.typePartnership': 'Partnership / adoption inquiry',
+          'contact.typeTbhub': 'tB Hub launch notification',
+          'contact.typeErr': 'Please select an inquiry type.',
+          'contact.nameLabel': 'Name (Company)',
+          'contact.namePlaceholder': 'Enter your name or company',
+          'contact.nameErr': 'Please enter your name or company.',
+          'contact.emailLabel': 'Email',
+          'contact.emailPlaceholder': 'Enter the email where we should reply',
+          'contact.emailErr': 'Please enter a valid email address.',
+          'contact.msgLabel': 'Message',
+          'contact.msgPlaceholder': 'Write your message freely',
+          'contact.msgErr': 'Please enter your message.',
+          'contact.privacyAgree': 'I agree to the collection and use of my personal information.',
+          'contact.privacyView': '[View details]',
+          'contact.privacyClose': '[Close]',
+          'contact.privacyDetail':
+            'Items collected: name/company, email, message<br />Purpose: consultation and inquiry handling<br />Retention: 1 year after the inquiry is resolved',
+          'contact.privacyErr': 'Please agree to the collection and use of personal information.',
+          'contact.submit': 'Send Inquiry →',
+          'contact.submitAria': 'Send inquiry',
+          'contact.sending': 'Sending…',
+          'contact.received': '✓ Your inquiry has been received',
+          'contact.office': '51 Hoam-ro, Buk-gu, Daegu,<br />Samsung Creative Campus Makerspace',
+          'contact.hoursWeekday': 'Weekdays',
+          'contact.hoursLunch': 'Lunch break',
+          'contact.hoursWeekend': 'Weekends & holidays',
+          'contact.hoursClosed': 'Closed',
+          'footer.slogan': 'We add value to information',
+          'footer.linksTitle': 'Links',
+          'footer.contactTitle': 'Contact',
+          'footer.address': '51 Hoam-ro, Buk-gu, Daegu<br />Samsung Creative Campus Makerspace',
+          'footer.terms': 'Terms of Service',
+          'footer.privacy': 'Privacy Policy',
+        },
+      };
+      function twLang() {
+        return document.documentElement.lang === 'en' ? 'en' : 'ko';
+      }
+      function L() {
+        return I18N[twLang()];
+      }
+      function applyI18n(lang) {
+        const dict = I18N[lang] || I18N.ko;
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const v = dict[el.getAttribute('data-i18n')];
+          if (v != null) el.textContent = v;
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach((el) => {
+          const v = dict[el.getAttribute('data-i18n-html')];
+          if (v != null) el.innerHTML = v;
+        });
+        document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+          el.getAttribute('data-i18n-attr')
+            .split('|')
+            .forEach((pair) => {
+              const idx = pair.indexOf('=');
+              if (idx < 0) return;
+              const attr = pair.slice(0, idx).trim();
+              const v = dict[pair.slice(idx + 1).trim()];
+              if (v != null) el.setAttribute(attr, v);
+            });
+        });
+      }
+      function setLang(lang) {
+        if (!I18N[lang]) lang = 'ko';
+        document.documentElement.lang = lang;
+        applyI18n(lang);
+        const dict = I18N[lang];
+        try {
+          localStorage.setItem('tw-lang', lang);
+        } catch (e) {}
+        document.querySelectorAll('.lang-btn').forEach((b) => b.classList.toggle('active', b.dataset.lang === lang));
+        const pt = document.getElementById('privacyToggle');
+        const pd = document.getElementById('privacyDetail');
+        if (pt && pd) pt.textContent = pd.classList.contains('show') ? dict['contact.privacyClose'] : dict['contact.privacyView'];
+        const sb = document.getElementById('submitBtn');
+        if (sb && !sb.classList.contains('done') && !sb.disabled) sb.textContent = dict['contact.submit'];
+      }
+      (function initLang() {
+        let lang = null;
+        try {
+          lang = localStorage.getItem('tw-lang');
+        } catch (e) {}
+        if (!lang) lang = (navigator.language || 'ko').toLowerCase().indexOf('ko') === 0 ? 'ko' : 'en';
+        setLang(lang);
+        document.querySelectorAll('.lang-btn').forEach((b) => b.addEventListener('click', () => setLang(b.dataset.lang)));
+      })();
+
       /* ── GNB scroll blur ── */
       const gnb = document.getElementById('gnb');
       window.addEventListener(
@@ -2120,19 +2508,8 @@
           T5 = 7200,
           T6 = 8600,
           T7 = 10000;
-        const LABELS = [
-          '보고서.pdf',
-          '회의록.docx',
-          '매뉴얼.txt',
-          '규정집.pdf',
-          '공지사항',
-          'FAQ',
-          '제품설명서',
-          '계약서',
-        ];
+        const LABELS = TW_CANVAS.ko.labels; // 노드 개수/배치 시드용 (렌더링 라벨은 언어별 적용)
         const HL = [0, 2, 3];
-        const Q = '안전 규정 변경사항은?';
-        const ANS = '2024년 3월 개정 기준, 안전관리책임자 선임 기준이 변경되었습니다.';
         let nodes = [],
           fwd = [],
           rev = [];
@@ -2334,6 +2711,7 @@
         function tick(ts) {
           if (!loopStart) loopStart = ts;
           const el = (ts - loopStart) % LOOP;
+          const CV = TW_CANVAS[twLang()];
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           const p1 = seg(el, 0, T1),
             p2 = seg(el, T1, T2),
@@ -2382,7 +2760,7 @@
               hlT = el >= T5 ? (isHL ? hlPr : 0) : 0,
               dimT = el >= T5 ? (!isHL ? hlPr : 0) : 0;
             dFile(n.x, n.y, cT, nOp, hlT, dimT);
-            dLabel(n.x, n.y, n.label, nOp * (1 - dimT * 0.72));
+            dLabel(n.x, n.y, CV.labels[i], nOp * (1 - dimT * 0.72));
           });
           /* 3 – Hub */
           if (el >= T1) {
@@ -2445,7 +2823,7 @@
             } else {
               sbEl.style.display = 'flex';
               sbEl.style.opacity = String(Math.min(1, p4 * 4) * gOp);
-              if (sTxtEl) sTxtEl.textContent = el >= T4 ? Q.slice(0, Math.floor(p5 * Q.length)) : '';
+              if (sTxtEl) sTxtEl.textContent = el >= T4 ? CV.q.slice(0, Math.floor(p5 * CV.q.length)) : '';
             }
           }
           /* DOM overlays ─ answer card */
@@ -2463,7 +2841,7 @@
                 if (aTxtEl) aTxtEl.textContent = '';
               } else {
                 if (dotsEl) dotsEl.style.display = 'none';
-                if (aTxtEl) aTxtEl.textContent = ANS.slice(0, Math.floor(Math.min(1, (p7 - 0.07) / 0.53) * ANS.length));
+                if (aTxtEl) aTxtEl.textContent = CV.ans.slice(0, Math.floor(Math.min(1, (p7 - 0.07) / 0.53) * CV.ans.length));
               }
               if (aSrcEl) {
                 const sv = p7 > 0.65;
@@ -2512,6 +2890,59 @@
       );
       document.querySelectorAll('.reveal').forEach((el) => revObs.observe(el));
 
+      /* ── Infinite Marquee ── */
+      (function initMarquee() {
+        const outer = document.querySelector('.marquee-outer');
+        const track = document.querySelector('.marquee-track');
+        if (!outer || !track) return;
+
+        const items = [...track.children];
+        const halfLen = items.length / 2;
+        let loopWidth = 0;
+        let pos = 0;
+        const speed = 0.6;
+        let paused = false;
+
+        function measure() {
+          const r0 = items[0].getBoundingClientRect();
+          const rH = items[halfLen].getBoundingClientRect();
+          loopWidth = rH.left - r0.left;
+        }
+
+        function tick() {
+          if (!paused && loopWidth > 0) {
+            pos += speed;
+            if (pos >= loopWidth) pos -= loopWidth;
+            track.style.transform = 'translateX(-' + pos + 'px)';
+          }
+          requestAnimationFrame(tick);
+        }
+
+        outer.addEventListener('mouseenter', () => {
+          paused = true;
+        });
+        outer.addEventListener('mouseleave', () => {
+          paused = false;
+        });
+
+        window.addEventListener('resize', () => {
+          pos = 0;
+          track.style.transform = '';
+          setTimeout(measure, 100);
+        });
+
+        function start() {
+          measure();
+          tick();
+        }
+
+        if (document.readyState === 'complete') {
+          start();
+        } else {
+          window.addEventListener('load', start);
+        }
+      })();
+
       /* ── Form ── */
       const cb = document.getElementById('privacyCb');
       const submitBtn = document.getElementById('submitBtn');
@@ -2524,7 +2955,7 @@
         const open = privacyDetail.classList.toggle('show');
         privacyToggle.setAttribute('aria-expanded', open);
         privacyDetail.setAttribute('aria-hidden', !open);
-        privacyToggle.textContent = open ? '[닫기]' : '[내용 보기]';
+        privacyToggle.textContent = open ? L()['contact.privacyClose'] : L()['contact.privacyView'];
       });
 
       document.getElementById('contactForm').addEventListener('submit', (e) => {
@@ -2585,7 +3016,7 @@
             'entry.485428648': document.getElementById('fMsg').value.trim(),
           };
 
-          submitBtn.textContent = '전송 중…';
+          submitBtn.textContent = L()['contact.sending'];
           submitBtn.classList.remove('ready');
           submitBtn.disabled = true;
 
@@ -2616,7 +3047,7 @@
           const finish = () => {
             if (done) return;
             done = true;
-            submitBtn.textContent = '✓ 문의가 접수되었습니다';
+            submitBtn.textContent = L()['contact.received'];
             submitBtn.classList.add('done');
             ghost.remove();
           };
