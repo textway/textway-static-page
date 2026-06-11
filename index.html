@@ -1493,7 +1493,7 @@
     <!-- ════════════════════════════ GNB ════════════════════════════ -->
     <nav id="gnb" aria-label="메인 네비게이션" data-i18n-attr="aria-label=nav.aria">
       <div class="gnb-inner">
-        <a href="#" class="gnb-logo" aria-label="Textway 홈으로 이동" data-i18n-attr="aria-label=nav.logoAria">
+        <a href="/" class="gnb-logo" aria-label="Textway 홈으로 이동" data-i18n-attr="aria-label=nav.logoAria">
           <img src="public/logo.png" alt="Textway" height="30" />
         </a>
         <div class="gnb-nav" role="menubar">
@@ -1544,7 +1544,7 @@
       <button class="mob-close" id="menuCloseBtn" aria-label="메뉴 닫기" data-i18n-attr="aria-label=nav.menuClose">
         ✕
       </button>
-      <a class="mob-link" href="#" onclick="closeMob()" data-i18n="nav.services">서비스</a>
+      <a class="mob-link" href="#products" onclick="closeMob()" data-i18n="nav.services">서비스</a>
       <a class="mob-sub" href="#products" onclick="closeMob()" data-i18n="mob.tbserver">↳ tB Server 바로가기</a>
       <a class="mob-sub" href="#products" onclick="closeMob()" data-i18n="mob.tbhub">↳ tB Hub (출시 예정)</a>
       <a class="mob-link" href="press.html" onclick="closeMob()" data-i18n="nav.press">보도자료</a>
@@ -1617,13 +1617,6 @@
             >
               <span data-i18n="hero.ctaPrimary">무료 도입 상담하기</span>
               <span class="arr" aria-hidden="true">→</span>
-            </a>
-            <a href="#" class="btn-ghost" aria-label="데모 영상 보기" data-i18n-attr="aria-label=hero.ctaDemoAria">
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <circle cx="8" cy="8" r="7" fill="none" stroke="currentColor" stroke-width="1.5" />
-                <path d="M6.5 5.5l5 2.5-5 2.5V5.5z" />
-              </svg>
-              <span data-i18n="hero.ctaDemo">데모 영상 보기</span>
             </a>
           </div>
         </div>
@@ -1774,7 +1767,9 @@
               </li>
             </ul>
             <a
-              href="#"
+              href="https://server.taggingbox.im"
+              target="_blank"
+              rel="noopener noreferrer"
               class="prod-cta"
               aria-label="tB Server 자세히 보기"
               data-i18n-attr="aria-label=products.server.ctaAria"
