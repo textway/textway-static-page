@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>개인정보 처리방침 – Textway</title>
+  <meta name="description" content="주식회사 텍스트웨이의 개인정보 처리방침입니다." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="public/favicon.png" />
+  <link
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --blue: #1b6fe0;
+      --blue-light: #ebf2ff;
+      --navy: #0f1829;
+      --ink: #111827;
+      --grey-700: #374151;
+      --grey-400: #9ca3af;
+      --grey-200: #e5e7eb;
+      --grey-100: #f3f5f8;
+      --gnb-h: 64px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 500; color: var(--ink); line-height: 1.8;
+      -webkit-font-smoothing: antialiased; background: white;
+      word-break: keep-all;
+    }
+    .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    /* GNB */
+    #gnb {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--gnb-h); display: flex; align-items: center;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+    }
+    .gnb-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    }
+    .gnb-logo img { height: 30px; width: auto; display: block; }
+    .gnb-home {
+      font-size: 14px; font-weight: 600; color: var(--grey-700);
+      text-decoration: none; padding: 8px 14px; border-radius: 8px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .gnb-home:hover { color: var(--blue); background: var(--blue-light); }
+
+    /* Document */
+    .doc-header { padding: 64px 0 32px; border-bottom: 1px solid var(--grey-200); }
+    .doc-header h1 { font-size: 32px; font-weight: 700; line-height: 1.3; }
+    .doc-header .doc-meta { font-size: 14px; color: var(--grey-400); margin-top: 10px; }
+    .doc-body { padding: 40px 0 96px; }
+    .doc-intro {
+      background: var(--grey-100); border-radius: 12px;
+      padding: 20px 24px; font-size: 15px; color: var(--grey-700); margin-bottom: 40px;
+    }
+    .doc-body h2 {
+      font-size: 19px; font-weight: 700; margin: 44px 0 14px;
+      padding-top: 8px; color: var(--ink);
+    }
+    .doc-body h2:first-of-type { margin-top: 0; }
+    .doc-body h3 { font-size: 16px; font-weight: 700; margin: 22px 0 8px; color: var(--grey-700); }
+    .doc-body p { font-size: 15px; color: var(--grey-700); margin: 10px 0; }
+    .doc-body ul, .doc-body ol { margin: 10px 0 10px 22px; font-size: 15px; color: var(--grey-700); }
+    .doc-body li { padding: 3px 0; }
+    .doc-body table {
+      width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14.5px;
+    }
+    .doc-body th, .doc-body td {
+      border: 1px solid var(--grey-200); padding: 10px 14px; text-align: left;
+      color: var(--grey-700); vertical-align: top;
+    }
+    .doc-body th { background: var(--grey-100); font-weight: 700; color: var(--ink); white-space: nowrap; }
+    .doc-note { font-size: 13.5px; color: var(--grey-400); }
+    .addendum {
+      margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--grey-200);
+      font-size: 14.5px; color: var(--grey-700);
+    }
+
+    /* Footer */
+    footer { background: var(--navy); padding: 40px 0; }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a {
+      font-size: 13px; color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 0.15s;
+    }
+    .footer-legal a:hover { color: white; }
+    .footer-legal a.current { color: white; font-weight: 600; }
+    .footer-copy { font-size: 13px; color: rgba(255, 255, 255, 0.45); }
+
+    @media (max-width: 767px) {
+      .doc-header { padding: 44px 0 24px; }
+      .doc-header h1 { font-size: 26px; }
+      .doc-body { padding: 32px 0 64px; }
+      .doc-body table { display: block; overflow-x: auto; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="gnb" aria-label="메인 네비게이션">
+  <div class="gnb-inner">
+    <a href="index.html" class="gnb-logo" aria-label="Textway 홈으로 이동">
+      <img src="public/logo.png" alt="Textway" height="30" />
+    </a>
+    <a href="index.html" class="gnb-home">← 홈으로</a>
+  </div>
+</nav>
+
+<div class="container">
+  <header class="doc-header">
+    <h1>개인정보 처리방침</h1>
+    <p class="doc-meta">시행일: 2025년 6월 20일</p>
+  </header>
+
+  <main class="doc-body">
+    <p class="doc-intro">
+      본 개인정보처리방침은 주식회사 텍스트웨이(이하 "회사")가 제공하는 Textway API 서비스(이하 "서비스") 및
+      회사 홈페이지를 이용하는 회원·이용자의 개인정보를 어떻게 수집·이용·보관·파기하는지를 명확히 안내함을 목적으로 함.
+    </p>
+
+    <h2>제1조 (개인정보 수집 항목 및 수집 방법)</h2>
+    <p>회사는 서비스 제공에 필요한 최소한의 개인정보만을 수집함.</p>
+    <h3>수집 항목</h3>
+    <table>
+      <thead>
+        <tr><th>구분</th><th>항목</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>API 서비스 (필수)</td><td>이메일, API 토큰, IP 주소, 접속 로그</td></tr>
+        <tr><td>API 서비스 (선택)</td><td>조직명, 담당자명, 전화번호</td></tr>
+        <tr><td>홈페이지 문의하기 (필수)</td><td>성함 또는 회사명, 이메일, 문의 내용</td></tr>
+      </tbody>
+    </table>
+    <h3>수집 방법</h3>
+    <ul>
+      <li>홈페이지 회원가입 및 서비스 이용 중 입력</li>
+      <li>홈페이지 문의하기 폼 입력</li>
+      <li>API 사용 로그 및 통계 자동 수집</li>
+    </ul>
+
+    <h2>제2조 (개인정보의 이용 목적)</h2>
+    <ul>
+      <li>서비스 제공 및 운영 관리 (사용량 확인, 요금 청구 등)</li>
+      <li>기술지원, 장애 대응, 고객 응대</li>
+      <li>도입 상담 및 문의 처리</li>
+      <li>계약 이행 및 의무사항 이행</li>
+      <li>서비스 개선을 위한 통계 분석 (익명 처리 후 활용)</li>
+    </ul>
+
+    <h2>제3조 (개인정보 보유 및 이용기간)</h2>
+    <p>회원 탈퇴 시 즉시 파기함. 단, 관련 법령에 따라 일정기간 보관이 필요한 정보는 예외.</p>
+    <p>상법 및 전자상거래법 등 관계법령에 따라 보존할 필요가 있는 경우 다음과 같이 보관함:</p>
+    <table>
+      <thead>
+        <tr><th>보관 항목</th><th>보유 기간</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>계약 또는 청약철회 기록</td><td>5년</td></tr>
+        <tr><td>대금 결제 및 재화 공급 기록</td><td>5년</td></tr>
+        <tr><td>소비자 불만 또는 분쟁처리 기록</td><td>3년</td></tr>
+        <tr><td>접속 로그 및 IP 정보</td><td>3개월</td></tr>
+        <tr><td>홈페이지 문의하기로 수집된 정보</td><td>문의 처리 완료 후 1년</td></tr>
+      </tbody>
+    </table>
+
+    <h2>제4조 (개인정보의 제3자 제공)</h2>
+    <p>회사는 원칙적으로 개인정보를 외부에 제공하지 않음.</p>
+    <p>다만 다음의 경우에는 예외로 함:</p>
+    <ul>
+      <li>이용자의 사전 동의가 있는 경우</li>
+      <li>관계 법령에 의거하여 적법하게 요구되는 경우</li>
+    </ul>
+
+    <h2>제5조 (개인정보의 처리 위탁)</h2>
+    <p>회사는 서비스 운영에 필수적인 업무에 대해 다음과 같이 개인정보 처리를 위탁할 수 있음.</p>
+    <ul>
+      <li>클라우드 인프라 제공사: AWS, GCP 등</li>
+      <li>이메일 발송 시스템: EmailJS 등</li>
+    </ul>
+    <p class="doc-note">※ 위탁 시 수탁사와의 계약을 통해 개인정보 보호 의무를 명확히 규정함.</p>
+
+    <h2>제6조 (개인정보 보호를 위한 기술적·관리적 조치)</h2>
+    <ul>
+      <li>개인정보는 암호화된 채널(SSL)을 통해 전송되며, 안전하게 저장·관리됨.</li>
+      <li>주요 정보에 대해서는 접근 권한 제한 및 정기적 보안 점검 실시</li>
+      <li>API 인증 정보는 별도 암호화 저장 및 관리</li>
+    </ul>
+
+    <h2>제7조 (개인정보 자동 수집 장치의 설치·운영 및 거부)</h2>
+    <p>회사는 API 사용과 관련하여 서비스 품질 향상을 위해 자동 수집 장치를 운영할 수 있음.</p>
+    <ul>
+      <li>수집항목: 접속 시간, IP, 요청량, 에러 코드 등</li>
+      <li>목적: 기술 분석 및 과금 기준 확보</li>
+      <li>이용자는 브라우저 설정을 통해 쿠키 저장을 거부할 수 있음.</li>
+    </ul>
+
+    <h2>제8조 (이용자의 권리와 행사 방법)</h2>
+    <ul>
+      <li>회원은 언제든지 본인의 개인정보 열람, 정정, 삭제, 처리정지를 요구할 수 있음.</li>
+      <li>개인정보 관련 요청은 이메일(<a href="mailto:info@textway.net">info@textway.net</a>)을 통해 접수 가능하며, 7일 이내 처리함.</li>
+    </ul>
+
+    <h2>제9조 (위치정보 처리에 대한 방침)</h2>
+    <ul>
+      <li>현재 Textway API는 위치정보를 수집하거나 활용하지 않음.</li>
+      <li>향후 위치기반 기능이 추가되는 경우, 별도 고지 및 동의 절차를 통해 처리함.</li>
+    </ul>
+
+    <h2>제10조 (개인정보 보호 책임자)</h2>
+    <ul>
+      <li>책임자: 유승민</li>
+      <li>이메일: <a href="mailto:info@textway.net">info@textway.net</a></li>
+    </ul>
+
+    <div class="addendum">
+      <strong>부칙</strong>
+      <p>본 개인정보처리방침은 2025년 6월 20일부터 시행함.</p>
+    </div>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-legal">
+      <a href="terms.html">서비스 이용약관</a>
+      <a href="privacy.html" class="current">개인정보 처리방침</a>
+    </div>
+    <p class="footer-copy">© 2026 Textway. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

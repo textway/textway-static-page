@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>서비스 이용약관 – Textway</title>
+  <meta name="description" content="주식회사 텍스트웨이의 Textway API 서비스 이용약관입니다." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="public/favicon.png" />
+  <link
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --blue: #1b6fe0;
+      --blue-light: #ebf2ff;
+      --navy: #0f1829;
+      --ink: #111827;
+      --grey-700: #374151;
+      --grey-400: #9ca3af;
+      --grey-200: #e5e7eb;
+      --grey-100: #f3f5f8;
+      --gnb-h: 64px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 500; color: var(--ink); line-height: 1.8;
+      -webkit-font-smoothing: antialiased; background: white;
+      word-break: keep-all;
+    }
+    .container { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+
+    /* GNB */
+    #gnb {
+      position: sticky; top: 0; z-index: 100;
+      height: var(--gnb-h); display: flex; align-items: center;
+      background: rgba(255, 255, 255, 0.88);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+    }
+    .gnb-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 24px;
+    }
+    .gnb-logo img { height: 30px; width: auto; display: block; }
+    .gnb-home {
+      font-size: 14px; font-weight: 600; color: var(--grey-700);
+      text-decoration: none; padding: 8px 14px; border-radius: 8px;
+      transition: color 0.15s, background 0.15s;
+    }
+    .gnb-home:hover { color: var(--blue); background: var(--blue-light); }
+
+    /* Document */
+    .doc-header { padding: 64px 0 32px; border-bottom: 1px solid var(--grey-200); }
+    .doc-header h1 { font-size: 32px; font-weight: 700; line-height: 1.3; }
+    .doc-header .doc-meta { font-size: 14px; color: var(--grey-400); margin-top: 10px; }
+    .doc-body { padding: 40px 0 96px; }
+    .doc-body .chapter {
+      font-size: 14px; font-weight: 700; letter-spacing: 0.06em;
+      color: var(--blue); text-transform: uppercase;
+      margin: 52px 0 6px; padding-top: 8px;
+    }
+    .doc-body .chapter:first-of-type { margin-top: 0; }
+    .doc-body h2 {
+      font-size: 19px; font-weight: 700; margin: 28px 0 12px; color: var(--ink);
+    }
+    .doc-body p { font-size: 15px; color: var(--grey-700); margin: 10px 0; }
+    .doc-body ul, .doc-body ol { margin: 10px 0 10px 22px; font-size: 15px; color: var(--grey-700); }
+    .doc-body li { padding: 3px 0; }
+
+    /* Footer */
+    footer { background: var(--navy); padding: 40px 0; }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto; padding: 0 24px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-legal { display: flex; gap: 20px; }
+    .footer-legal a {
+      font-size: 13px; color: rgba(255, 255, 255, 0.6); text-decoration: none; transition: color 0.15s;
+    }
+    .footer-legal a:hover { color: white; }
+    .footer-legal a.current { color: white; font-weight: 600; }
+    .footer-copy { font-size: 13px; color: rgba(255, 255, 255, 0.45); }
+
+    @media (max-width: 767px) {
+      .doc-header { padding: 44px 0 24px; }
+      .doc-header h1 { font-size: 26px; }
+      .doc-body { padding: 32px 0 64px; }
+      .footer-inner { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav id="gnb" aria-label="메인 네비게이션">
+  <div class="gnb-inner">
+    <a href="index.html" class="gnb-logo" aria-label="Textway 홈으로 이동">
+      <img src="public/logo.png" alt="Textway" height="30" />
+    </a>
+    <a href="index.html" class="gnb-home">← 홈으로</a>
+  </div>
+</nav>
+
+<div class="container">
+  <header class="doc-header">
+    <h1>Textway API 이용약관</h1>
+  </header>
+
+  <main class="doc-body">
+    <p class="chapter">제1장 총칙</p>
+
+    <h2>제1조 (목적)</h2>
+    <p>본 약관은 주식회사 텍스트웨이(이하 "회사")가 제공하는 Textway API 서비스(이하 "서비스")의 이용조건 및 절차, 회사와 회원 간의 권리·의무 및 책임사항 등을 규정함을 목적으로 함.</p>
+
+    <h2>제2조 (정의)</h2>
+    <ol>
+      <li>"Textway API"란 비정형 텍스트를 벡터화 및 구조화하고, RAG 기반 LLM 응답까지 가능한 텍스트 인프라 API를 의미함.</li>
+      <li>"회원"이란 본 약관에 동의하고, 회사의 API 서비스를 이용하는 자를 의미함.</li>
+      <li>"API 입력 데이터"란 회원이 서비스에 입력하는 텍스트, 메타데이터 등 일체의 데이터를 말함.</li>
+      <li>"API 출력 데이터"란 입력에 대해 회사 API가 생성한 태그, 박스 구조, 요약, 응답 등 결과물을 말함.</li>
+    </ol>
+
+    <p class="chapter">제2장 이용계약 및 관리</p>
+
+    <h2>제3조 (계약의 성립)</h2>
+    <ol>
+      <li>회원은 회사가 정한 절차에 따라 서비스 이용을 신청하고, 회사의 승낙이 있는 경우 계약이 성립됨.</li>
+      <li>회사는 부정확한 정보 입력, 타인의 명의 도용, 서비스 목적 외 이용 등 합리적인 사유가 있는 경우 신청을 거절할 수 있음.</li>
+    </ol>
+
+    <h2>제4조 (계정 및 인증)</h2>
+    <ol>
+      <li>API 사용은 발급된 인증 토큰(Token)을 통해 이뤄지며, 회원은 이를 안전하게 관리할 책임이 있음.</li>
+      <li>인증 토큰을 타인과 공유하거나 유출할 경우, 회사는 해당 계정을 정지시킬 수 있음.</li>
+    </ol>
+
+    <p class="chapter">제3장 서비스의 제공 및 제한</p>
+
+    <h2>제5조 (서비스 내용)</h2>
+    <ol>
+      <li>Textway API는 문서 임베딩, 태그 자동 추천, 박스 구조화, RAG 검색 응답 등을 포함함.</li>
+      <li>서비스는 회원의 개발 환경 내에서 API 요청을 통해 호출 가능함.</li>
+    </ol>
+
+    <h2>제6조 (서비스의 제공 범위)</h2>
+    <ol>
+      <li>API는 실시간 또는 비동기 방식으로 제공되며, 회사는 처리 가능 건수 및 속도 등을 기준으로 요금제를 운영함.</li>
+      <li>서비스 사용량, 속도 제한, 요금 등의 내용은 별도 안내에 따름.</li>
+    </ol>
+
+    <h2>제7조 (API 데이터 처리 원칙)</h2>
+    <ol>
+      <li>회사는 API 입력 데이터 및 출력 데이터를 저장하지 않으며, 모델 학습이나 개선 목적에도 활용하지 않음.</li>
+      <li>단, 비동기 API의 경우 결과 제공을 위해 입력 데이터는 최대 3일, 출력 데이터는 최대 30일 보관될 수 있음.</li>
+      <li>위 보관은 회원의 명시적 요청에 의해 삭제 가능함.</li>
+    </ol>
+
+    <h2>제8조 (지식정보 생성물의 권리)</h2>
+    <ol>
+      <li>회원은 API를 통해 생성된 태그, 박스, 요약 등의 결과물을 비독점적으로 사용할 수 있음.</li>
+      <li>다만, 결과물의 정확성과 신뢰도에 대해서는 회사가 보증하지 않으며, 회원은 이를 참고자료로만 활용해야 함.</li>
+    </ol>
+
+    <h2>제9조 (서비스 제한 및 중단)</h2>
+    <p>회사는 다음 각 호에 해당하는 경우 API 사용을 제한하거나 중단할 수 있음:</p>
+    <ul>
+      <li>인증 정보의 유출 또는 타인에 의한 도용</li>
+      <li>DDoS, 자동 요청 도구 등 비정상적 접근 시도</li>
+      <li>모델 반출, 역설계 등의 행위 발생</li>
+    </ul>
+
+    <p class="chapter">제4장 요금 및 환불</p>
+
+    <h2>제10조 (요금 부과)</h2>
+    <ol>
+      <li>Textway API는 사용량에 따라 후불 또는 선불 방식으로 요금이 부과됨.</li>
+      <li>요금제, 청구 주기, 사용 단위 등은 별도 안내 페이지에 따름.</li>
+    </ol>
+
+    <h2>제11조 (환불 및 청약철회)</h2>
+    <ol>
+      <li>미사용 시 결제일로부터 7일 이내 환불 가능함.</li>
+      <li>일부 사용된 경우 사용분 차감 후 잔액 환불 가능함.</li>
+      <li>환불 요청은 고객지원 채널을 통해 접수되며, 7영업일 이내 처리함.</li>
+    </ol>
+
+    <p class="chapter">제5장 기타</p>
+
+    <h2>제12조 (지적재산권)</h2>
+    <ol>
+      <li>API 및 결과물의 구조, 알고리즘, 데이터베이스는 회사에 귀속되며, 무단 복제·배포·전송 등을 금함.</li>
+      <li>회원은 출력 데이터의 자체적 저장·활용은 가능하나, 이를 모델 학습이나 경쟁 서비스 구축에 사용할 수 없음.</li>
+    </ol>
+
+    <h2>제13조 (면책 및 분쟁 해결)</h2>
+    <ol>
+      <li>회사는 API 사용 중 발생한 법적·윤리적 책임, 데이터 손실, 해석 오류 등에 대해 책임지지 않음.</li>
+      <li>분쟁 발생 시 회사 본점 소재지를 관할하는 법원을 제1심 관할 법원으로 함.</li>
+    </ol>
+  </main>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-legal">
+      <a href="terms.html" class="current">서비스 이용약관</a>
+      <a href="privacy.html">개인정보 처리방침</a>
+    </div>
+    <p class="footer-copy">© 2026 Textway. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>
