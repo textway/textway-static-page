@@ -61,7 +61,7 @@
         --navy-mid: #1a2740;
         --ink: #111827;
         --grey-700: #374151;
-        --grey-400: #9ca3af;
+        --grey-400: #6b7280;
         --grey-200: #e5e7eb;
         --grey-100: #f3f5f8;
         --white: #ffffff;
@@ -79,6 +79,21 @@
       }
       html {
         scroll-behavior: smooth;
+      }
+      /* 모션 감소 설정 사용자 대응 — transition/animation 비활성, 스크롤 즉시 이동
+         (캔버스·마키 등 JS rAF 애니메이션은 matchMedia로 별도 정지) */
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
       }
       body {
         font-family:
@@ -210,7 +225,9 @@
       .gnb-link svg {
         transition: transform 0.2s;
       }
-      .gnb-item:hover .gnb-link svg {
+      .gnb-item:hover .gnb-link svg,
+      .gnb-item:focus-within .gnb-link svg,
+      .gnb-item.open .gnb-link svg {
         transform: rotate(180deg);
       }
 
@@ -230,7 +247,9 @@
         transition: all 0.18s ease;
         z-index: 200;
       }
-      .gnb-item:hover .gnb-drop {
+      .gnb-item:hover .gnb-drop,
+      .gnb-item:focus-within .gnb-drop,
+      .gnb-item.open .gnb-drop {
         opacity: 1;
         visibility: visible;
         transform: none;
@@ -836,7 +855,7 @@
         display: block;
         font-size: 11px;
         font-weight: 500;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.62);
         margin-top: 3px;
       }
 
@@ -846,14 +865,14 @@
         margin-bottom: 36px;
       }
       .trust-header .eyebrow {
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.62);
       }
       .trust-header .section-h2 {
         color: white;
         font-size: 30px;
       }
       .trust-header p {
-        color: rgba(255, 255, 255, 0.55);
+        color: rgba(255, 255, 255, 0.62);
         font-size: 15px;
         margin-top: 10px;
       }
@@ -928,13 +947,13 @@
       }
       .press-date {
         font-size: 12px;
-        color: rgba(255, 255, 255, 0.35);
+        color: rgba(255, 255, 255, 0.62);
         margin-bottom: 4px;
       }
       .press-media {
         font-size: 12px;
         font-weight: 700;
-        color: rgba(255, 255, 255, 0.55);
+        color: rgba(255, 255, 255, 0.62);
         margin-bottom: 12px;
       }
       .press-headline {
@@ -1083,7 +1102,8 @@
         font-family: inherit;
         border: none;
         border-radius: 10px;
-        cursor: not-allowed;
+        /* 미동의 상태도 클릭 가능(클릭 시 검증 안내 노출)하므로 not-allowed 대신 pointer로 실제 동작과 일치 */
+        cursor: pointer;
         transition:
           background 0.2s,
           color 0.2s,
@@ -1186,12 +1206,12 @@
       }
       .footer-slogan {
         font-size: 14px;
-        color: rgba(255, 255, 255, 0.45);
+        color: rgba(255, 255, 255, 0.62);
       }
       .footer-col-title {
         font-size: 12px;
         font-weight: 600;
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.62);
         text-transform: uppercase;
         letter-spacing: 0.08em;
         margin-bottom: 18px;
@@ -1240,7 +1260,7 @@
       }
       .footer-legal a {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.35);
+        color: rgba(255, 255, 255, 0.62);
         text-decoration: none;
         transition: color 0.15s;
       }
@@ -1249,7 +1269,7 @@
       }
       .footer-copy {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.35);
+        color: rgba(255, 255, 255, 0.62);
       }
 
       /* ── RESPONSIVE ── */
@@ -1496,17 +1516,17 @@
         <a href="/" class="gnb-logo" aria-label="Textway 홈으로 이동" data-i18n-attr="aria-label=nav.logoAria">
           <img src="public/logo.png" alt="Textway" height="30" />
         </a>
-        <div class="gnb-nav" role="menubar">
-          <div class="gnb-item" role="none">
-            <button class="gnb-link" role="menuitem" aria-haspopup="true" aria-expanded="false">
+        <div class="gnb-nav">
+          <div class="gnb-item">
+            <button class="gnb-link" id="gnbServicesBtn" aria-haspopup="true" aria-expanded="false" aria-controls="gnbServicesDrop">
               <span data-i18n="nav.services">서비스</span>
               <svg width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true">
                 <path d="M1 1l5 5 5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
               </svg>
             </button>
-            <div class="gnb-drop" role="menu">
-              <a href="#products" class="gnb-drop-item" role="menuitem" data-i18n="nav.tbserver">tB Server 바로가기</a>
-              <a href="#products" class="gnb-drop-item" role="menuitem" data-i18n-html="nav.tbhub">
+            <div class="gnb-drop" id="gnbServicesDrop">
+              <a href="#products" class="gnb-drop-item" data-i18n="nav.tbserver">tB Server 바로가기</a>
+              <a href="#products" class="gnb-drop-item" data-i18n-html="nav.tbhub">
                 tB Hub <span class="pill-amber">출시 예정</span>
               </a>
             </div>
@@ -1582,21 +1602,23 @@
           <span class="eyebrow hero-anim" style="opacity: 0; transform: translateY(18px)" data-delay="0"
             >THE PATH TO INTELLIGENT TEXT INSIGHT</span
           >
-          <h1
-            class="hero-h1 hero-anim"
-            style="opacity: 0; transform: translateY(18px)"
-            data-delay="150"
-            data-i18n="hero.h1a"
-          >
-            정보에 가치를 더합니다
-          </h1>
-          <h1
-            class="hero-h1 hero-anim"
-            style="opacity: 0; transform: translateY(18px); margin-top: 4px"
-            data-delay="280"
-            data-i18n-html="hero.h1b"
-          >
-            AI로 <span class="hero-h1-blue">텍스트의 가능성</span>을<br />확장합니다
+          <h1 class="hero-h1">
+            <span
+              class="hero-anim"
+              style="display: block; opacity: 0; transform: translateY(18px)"
+              data-delay="150"
+              data-i18n="hero.h1a"
+            >
+              정보에 가치를 더합니다
+            </span>
+            <span
+              class="hero-anim"
+              style="display: block; opacity: 0; transform: translateY(18px); margin-top: 4px"
+              data-delay="280"
+              data-i18n-html="hero.h1b"
+            >
+              AI로 <span class="hero-h1-blue">텍스트의 가능성</span>을<br />확장합니다
+            </span>
           </h1>
           <p
             class="hero-body hero-anim"
@@ -1967,7 +1989,7 @@
         </div>
 
         <!-- Press cards -->
-        <p class="press-title reveal" data-i18n="social.pressTitle">주요 언론 보도</p>
+        <h3 class="press-title reveal" data-i18n="social.pressTitle">주요 언론 보도</h3>
         <div class="press-grid">
           <div class="press-card reveal">
             <span class="press-badge" data-i18n="social.pressBadge">언론보도</span>
@@ -2590,6 +2612,32 @@
         { passive: true },
       );
 
+      /* ── GNB "서비스" 드롭다운: 클릭/키보드 토글 + aria-expanded 동기화 ── */
+      (function () {
+        const btn = document.getElementById('gnbServicesBtn');
+        const item = btn ? btn.closest('.gnb-item') : null;
+        if (!btn || !item) return;
+        const setOpen = (open) => {
+          item.classList.toggle('open', open);
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        };
+        btn.addEventListener('click', () => setOpen(!item.classList.contains('open')));
+        document.addEventListener('click', (e) => {
+          if (!item.contains(e.target)) setOpen(false);
+        });
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            setOpen(false);
+            btn.focus();
+          }
+        });
+        item.addEventListener('focusout', () => {
+          requestAnimationFrame(() => {
+            if (!item.contains(document.activeElement)) setOpen(false);
+          });
+        });
+      })();
+
       /* ── Mobile menu ── */
       const burgerBtn = document.getElementById('burgerBtn');
       const mobileMenu = document.getElementById('mobileMenu');
@@ -2599,13 +2647,37 @@
         mobileMenu.classList.add('open');
         document.body.style.overflow = 'hidden';
         burgerBtn.setAttribute('aria-expanded', 'true');
+        menuCloseBtn.focus(); // 열릴 때 닫기 버튼으로 포커스 이동
       });
-      menuCloseBtn.addEventListener('click', closeMob);
+      menuCloseBtn.addEventListener('click', () => {
+        closeMob();
+        burgerBtn.focus(); // 닫은 뒤 트리거로 포커스 복귀
+      });
       function closeMob() {
         mobileMenu.classList.remove('open');
         document.body.style.overflow = '';
         burgerBtn.setAttribute('aria-expanded', 'false');
       }
+      // ESC 닫기 + 포커스 트랩 (열려 있을 때만)
+      mobileMenu.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeMob();
+          burgerBtn.focus();
+          return;
+        }
+        if (e.key !== 'Tab') return;
+        const f = mobileMenu.querySelectorAll('a[href], button:not([disabled])');
+        if (!f.length) return;
+        const first = f[0],
+          last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      });
 
       /* ── Anchor smooth scroll (offset for GNB) ── */
       document.querySelectorAll('a[href^="#"]').forEach((a) => {
@@ -2633,6 +2705,10 @@
           aSrcEl = document.getElementById('heroAnsSrc');
         let raf,
           loopStart = null;
+        // 모션 감소 설정 시 애니메이션 정지(정적 1프레임만), 화면 밖일 때 정지(onScreen은 IntersectionObserver가 갱신)
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let onScreen = true;
+        const canAnimate = () => !reduceMotion && onScreen && !document.hidden;
 
         const LOOP = 10800,
           T1 = 1500,
@@ -2985,19 +3061,40 @@
               }
             }
           }
-          raf = requestAnimationFrame(tick);
+          if (canAnimate()) raf = requestAnimationFrame(tick);
         }
 
         document.addEventListener('visibilitychange', () => {
           if (document.hidden) cancelAnimationFrame(raf);
-          else {
+          else if (canAnimate()) {
             loopStart = null;
             raf = requestAnimationFrame(tick);
           }
         });
         window.addEventListener('resize', () => resize(), { passive: true });
         resize();
+        // 최초 1프레임은 항상 그린다(정적 배경 확보). reduced-motion이면 tick 내부에서 재예약이 멈춰 정지 상태가 된다.
         raf = requestAnimationFrame(tick);
+
+        /* ── 화면 밖이면 캔버스 애니메이션 정지/재개 (Med#7) ── */
+        const heroSec = document.getElementById('hero');
+        if (heroSec && 'IntersectionObserver' in window) {
+          new IntersectionObserver(
+            (entries) => {
+              onScreen = entries[0].isIntersecting;
+              if (onScreen) {
+                if (canAnimate()) {
+                  loopStart = null;
+                  cancelAnimationFrame(raf);
+                  raf = requestAnimationFrame(tick);
+                }
+              } else {
+                cancelAnimationFrame(raf);
+              }
+            },
+            { threshold: 0 },
+          ).observe(heroSec);
+        }
       })();
 
       /* ── Hero text stagger ── */
@@ -3037,6 +3134,10 @@
         let pos = 0;
         const speed = 0.6;
         let paused = false;
+        let raf;
+        // 모션 감소 시 정지(정적), 화면 밖이면 rAF 중단 (Med#3 / Med#7)
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let onScreen = true;
 
         function measure() {
           const r0 = items[0].getBoundingClientRect();
@@ -3050,7 +3151,13 @@
             if (pos >= loopWidth) pos -= loopWidth;
             track.style.transform = 'translateX(-' + pos + 'px)';
           }
-          requestAnimationFrame(tick);
+          if (!reduceMotion && onScreen) raf = requestAnimationFrame(tick);
+        }
+
+        function run() {
+          if (reduceMotion || !onScreen) return;
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(tick);
         }
 
         outer.addEventListener('mouseenter', () => {
@@ -3068,7 +3175,18 @@
 
         function start() {
           measure();
-          tick();
+          run();
+        }
+
+        if ('IntersectionObserver' in window) {
+          new IntersectionObserver(
+            (entries) => {
+              onScreen = entries[0].isIntersecting;
+              if (onScreen) run();
+              else cancelAnimationFrame(raf);
+            },
+            { threshold: 0 },
+          ).observe(outer);
         }
 
         if (document.readyState === 'complete') {
