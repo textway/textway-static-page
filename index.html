@@ -1329,8 +1329,8 @@
           display: flex;
         }
         #hero {
-          min-height: 100svh;
-          min-height: 100vh;
+          min-height: 100vh; /* 폴백 먼저 */
+          min-height: 100svh; /* 지원 브라우저는 svh가 이김 — 모바일 주소창 영역 과대 방지 */
         }
         .hero-inner {
           padding: 80px 20px 56px;
@@ -1514,6 +1514,16 @@
         }
       }
     </style>
+    <!-- JS 비활성/실패 시 reveal·hero 애니메이션 요소가 숨겨진 채 남지 않도록 폴백 -->
+    <noscript>
+      <style>
+        .reveal,
+        .hero-anim {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
     <!-- ════════════════════════════ GNB ════════════════════════════ -->

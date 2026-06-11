@@ -268,6 +268,12 @@
       footer { padding-top: 48px; }
     }
   </style>
+  <!-- JS 비활성/실패 시 reveal 요소가 숨겨진 채 남지 않도록 폴백 -->
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; transform: none !important; }
+    </style>
+  </noscript>
 </head>
 <body>
 
@@ -329,7 +335,7 @@
         <h1 class="page-header-h1" data-i18n="page.h1">보도자료</h1>
         <p class="page-header-sub" data-i18n="page.sub">Textway에 관한 주요 언론 보도입니다.</p>
       </div>
-      <p class="press-count" data-i18n="page.count">3 articles</p>
+      <p class="press-count" data-i18n="page.count">전체 3건</p>
     </div>
   </div>
 </section>
@@ -441,7 +447,7 @@
       'mob.tbhub': '↳ tB Hub (출시 예정)',
       'page.h1': '보도자료',
       'page.sub': 'Textway에 관한 주요 언론 보도입니다.',
-      'page.count': '전체 3건',
+      'page.count': '전체 {n}건',
       'press.badge': '언론보도',
       'art1.outlet': '와우테일',
       'art1.date': '2025.11.06',
@@ -479,7 +485,7 @@
       'mob.tbhub': '↳ tB Hub (Coming Soon)',
       'page.h1': 'Press',
       'page.sub': 'Major press coverage about Textway.',
-      'page.count': '3 articles',
+      'page.count': '{n} articles',
       'press.badge': 'Press',
       'art1.outlet': 'Wowtale',
       'art1.date': 'Nov 6, 2025',
@@ -508,9 +514,11 @@
   }
   function applyI18n(lang) {
     const dict = I18N[lang] || I18N.ko;
+    // 기사 수 자동 카운트: 사전의 {n}을 실제 .press-article 개수로 치환 (수동 카운트 불일치 방지)
+    const pressCount = document.querySelectorAll('.press-article').length;
     document.querySelectorAll('[data-i18n]').forEach((el) => {
       const v = dict[el.getAttribute('data-i18n')];
-      if (v != null) el.textContent = v;
+      if (v != null) el.textContent = v.replace('{n}', pressCount);
     });
     document.querySelectorAll('[data-i18n-html]').forEach((el) => {
       const v = dict[el.getAttribute('data-i18n-html')];
